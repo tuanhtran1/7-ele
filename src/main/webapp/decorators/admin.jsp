@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
 <%--    <link href="/admin/plugins/leaflet/leaflet.css" rel="stylesheet">--%>
 <%--    <link href="/admin/plugins/lightpick/lightpick.css" rel="stylesheet">--%>
-    <link href="/admin/plugins/dropify/css/dropify.min.css" rel="stylesheet">v
+    <link href="/admin/plugins/dropify/css/dropify.min.css" rel="stylesheet">
 
     <!-- jvectormap -->
     <link href="/admin/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">

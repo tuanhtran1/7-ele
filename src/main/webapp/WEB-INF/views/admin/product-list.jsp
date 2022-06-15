@@ -61,7 +61,7 @@
                     <tbody>
                     <c:forEach var="p" items="${products}">
                         <tr>
-                            <td><img src="<%=SystemConstant.BASE_API%>/image/product/${p.image}" alt="productImg"
+                            <td><img src="products/${p.image}" alt="productImg"
                                      height="40">
                                 <p class="d-inline-block align-middle mb-0">
                                     <a href=""

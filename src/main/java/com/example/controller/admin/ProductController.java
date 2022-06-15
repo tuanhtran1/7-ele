@@ -18,9 +18,6 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ServletContext servletContext;
-
-    @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
@@ -31,9 +28,6 @@ public class ProductController {
         ModelAndView mav = new ModelAndView("admin/product-list");
         List<ProductDTO> products = restTemplate.getForObject("/api/products", List.class);
         mav.addObject("products", products);
-
-        System.out.println(System.getProperty("user.home"));
-        System.out.println(servletContext.getRealPath("/image"));
         return mav;
     }
 
