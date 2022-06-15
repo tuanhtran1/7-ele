@@ -7,8 +7,6 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
-<%@ page import="static com.example.constant.SystemConstant.BASE_API" %>
-<%@ page import="com.example.constant.SystemConstant" %>
 <html>
 <head>
     <title>Title</title>
@@ -61,7 +59,7 @@
                     <tbody>
                     <c:forEach var="p" items="${products}">
                         <tr>
-                            <td><img src="products/${p.image}" alt="productImg"
+                            <td><img src="/products/${p.image}" alt="productImg"
                                      height="40">
                                 <p class="d-inline-block align-middle mb-0">
                                     <a href=""

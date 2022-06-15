@@ -10,7 +10,9 @@ public class ResourceConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/admin/products/**")
-                .addResourceLocations("file:"+ SystemConstant.UPLOAD_IMG_DIR_PRODUCT);
+        registry.addResourceHandler("/products/**")
+                .addResourceLocations("file:"+ SystemConstant.UPLOAD_IMG_DIR_PRODUCT); // filesystem
+//                .addResourceLocations("/image/product/"); //webapp
+
     }
 }
