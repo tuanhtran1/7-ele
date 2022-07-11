@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 
-@Controller
+@Controller(value = "homeControllerOfAdmin")
 public class HomeController {
 
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)

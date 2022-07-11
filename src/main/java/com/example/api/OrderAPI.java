@@ -21,7 +21,7 @@ public class OrderAPI {
     }
 
     @PostMapping("/order")
-    public OrderDTO addOrder(@RequestParam Map<Long,Integer> products, @RequestParam String address, @RequestParam Long userId){
-        return orderService.addOrder(products,address,userId);
+    public OrderDTO insertOrderByUser(@RequestParam Map<String, Object> params) {
+        return orderService.insertOrder(params);
     }
 }

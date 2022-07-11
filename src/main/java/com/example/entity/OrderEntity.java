@@ -1,11 +1,13 @@
 package com.example.entity;
 
 
+import com.example.enums.StatusOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,8 +23,12 @@ public class OrderEntity extends BaseEntity {
     @Column(name = "address")
     private String address;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusOrder status;
+
     @OneToMany(mappedBy = "orderProduct", cascade = CascadeType.ALL)
-    private List<OrderDetailEntity> orderDetails;
+    private List<OrderDetailEntity> orderDetails = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "userid")

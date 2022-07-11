@@ -16,4 +16,8 @@
         <pattern>/login</pattern>
     </decorator>
 
+    <decorator name="customer" page="customer.jsp">
+        <pattern>/customer*</pattern>
+    </decorator>
+
 </decorators>

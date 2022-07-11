@@ -23,13 +23,28 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "quantity")
     private Integer quantity;
 
+    @Column(name = "saleprice")
+    private Float salePrice;
+
+    @Column(name = "discount")
+    private Float discount;
+
     @Column(name = "price")
     private Float price;
 
     @Column(name = "image")
     private String image;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<OrderDetailEntity> orderDetails;
 
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private CategoryEntity category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<CartEntity> carts;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ImageEntity> images;
 }
