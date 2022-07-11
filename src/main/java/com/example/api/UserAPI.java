@@ -20,5 +20,4 @@ public class UserAPI {
     public UserDTO login(@RequestBody UserRequest userRequest) {
         return userService.login(userRequest);
     }
-
 }

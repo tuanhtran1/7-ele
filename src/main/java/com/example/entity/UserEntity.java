@@ -1,32 +1,36 @@
 package com.example.entity;
 
 import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity extends BaseEntity{
+public class UserEntity extends BaseEntity {
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column(name="email", unique= true)
+    @Column(name = "email", unique = true)
     private String email;
 
     @ManyToOne
-    @JoinColumn(name="roleid")
+    @JoinColumn(name = "roleid")
     private RoleEntity role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<OrderEntity> orders;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<CartEntity> carts;
 }

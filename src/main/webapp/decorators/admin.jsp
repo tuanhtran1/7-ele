@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><dec:title default="Trang chủ"/></title>
+    <title><dec:title default="Trang chủ quản trị"/></title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Premium Multipurpose Admin & Dashboard Template"
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
 <%--    <link href="/admin/plugins/leaflet/leaflet.css" rel="stylesheet">--%>
 <%--    <link href="/admin/plugins/lightpick/lightpick.css" rel="stylesheet">--%>
-    <link href="/admin/plugins/dropify/css/dropify.min.css" rel="stylesheet">v
+    <link href="/admin/plugins/dropify/css/dropify.min.css" rel="stylesheet">
 
     <!-- jvectormap -->
     <link href="/admin/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">

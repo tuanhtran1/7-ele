@@ -13,10 +13,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class OrderDetailEntity extends BaseEntity {
 
-    @Column(name="quantity")
+    @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name="totalmoney")
+    @Column(name = "totalmoney")
     private Float totalMoney;
 
     @ManyToOne

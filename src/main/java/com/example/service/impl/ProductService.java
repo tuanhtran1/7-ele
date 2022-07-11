@@ -27,9 +27,6 @@ import java.util.List;
 public class ProductService implements IProductService {
 
     @Autowired
-    private ServletContext servletContext;
-
-    @Autowired
     private ProductMapper productMapper;
 
     @Autowired
