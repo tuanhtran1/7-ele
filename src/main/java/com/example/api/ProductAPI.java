@@ -30,25 +30,31 @@ public class ProductAPI {
 
     @PostMapping("/product")
     public ProductDTO addProduct(@RequestParam("productRequest") String productRequestJsonString,
-                                 @RequestParam(name = "image",required = false) MultipartFile image) throws IOException {
+                                 @RequestParam(name = "image", required = false) MultipartFile image) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         ProductRequest productRequest = null;
-        try{
+        try {
             productRequest = objectMapper.readValue(productRequestJsonString, ProductRequest.class);
             productRequest.setFileImg(image);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e){ e.printStackTrace(); }
 
         return productService.insert(productRequest);
     }
 
     @PutMapping("/product")
-    public ProductDTO updateProduct(@RequestBody ProductRequest productRequest){
+    public ProductDTO updateProduct(@RequestBody ProductRequest productRequest) {
         return productService.update(productRequest);
     }
 
     @DeleteMapping("/product")
     public void deleteProduct(@RequestParam Long id) {
         productService.delete(id);
+    }
+
+    @GetMapping("/product/category/{code}")
+    public List<ProductDTO> getProductByCategory(@PathVariable String code) {
+        return productService.findByCategoryCode(code);
     }
 }

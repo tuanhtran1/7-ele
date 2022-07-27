@@ -16,4 +16,6 @@ public interface IProductService {
     ProductDTO update(ProductRequest productRequest);
 
     void delete(Long id);
+
+    List<ProductDTO> findByCategoryCode(String code);
 }

@@ -5,4 +5,6 @@ import com.example.dto.request.UserRequest;
 
 public interface IUserService {
     UserDTO login(UserRequest userRequest);
+
+    UserDTO createUser(UserRequest req, String role);
 }

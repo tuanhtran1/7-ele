@@ -5,5 +5,5 @@
   Time: 8:23 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@include file="/common/taglib.jsp"%>
-<c:redirect url="/login"/>
+<%@include file="/common/taglib.jsp" %>
+<c:redirect url="/login-admin"/>

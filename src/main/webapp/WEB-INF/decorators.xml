@@ -13,7 +13,7 @@
     </decorator>
 
     <decorator name="login" page="login.jsp">
-        <pattern>/login</pattern>
+        <pattern>/login-admin</pattern>
     </decorator>
 
     <decorator name="customer" page="customer.jsp">

@@ -24,8 +24,7 @@ public class OrderDetailService implements IOrderDetailService {
     public List<OrderDetailDTO> findByOrderId(Long id) {
         List<OrderDetailDTO> orderDetailDTOs = new ArrayList<>();
         List<OrderDetailEntity> orderDetailEntities = orderDetailRepository.findByOrderId(id);
-        for (OrderDetailEntity item:orderDetailEntities )
-        {
+        for (OrderDetailEntity item : orderDetailEntities) {
             orderDetailDTOs.add(orderDetailMapper.toDTO(item));
         }
         return orderDetailDTOs;

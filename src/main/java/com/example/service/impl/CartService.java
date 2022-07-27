@@ -6,7 +6,6 @@ import com.example.entity.CartEntity;
 import com.example.entity.ProductEntity;
 import com.example.entity.UserEntity;
 import com.example.exception.CalculateException;
-import com.example.exception.FieldNotFoundException;
 import com.example.exception.NotFoundException;
 import com.example.mapper.CartMapper;
 import com.example.repository.CartRepository;

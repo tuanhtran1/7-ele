@@ -1,23 +1,43 @@
-package com.example.api;
-
-import com.example.dto.UserDTO;
-import com.example.dto.request.UserRequest;
-import com.example.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("/api")
-public class UserAPI {
-
-    @Autowired
-    private IUserService userService;
-
-    @PostMapping("/user/login")
-    public UserDTO login(@RequestBody UserRequest userRequest) {
-        return userService.login(userRequest);
-    }
-}
+//package com.example.api;
+//
+//import com.example.config.TokenProvider;
+//import com.example.dto.AuthToken;
+//import com.example.dto.request.UserRequest;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.AuthenticationException;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//import javax.validation.Valid;
+//
+//@RestController
+//@RequestMapping("/api/user")
+//public class UserAPI {
+//
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
+//
+//    @Autowired
+//    private TokenProvider jwtTokenUtil;
+//
+//    @PostMapping("/authenticate")
+//    public ResponseEntity<?> authenticated(@Valid @RequestBody UserRequest userRequest) throws AuthenticationException {
+//
+//        final Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        userRequest.getEmail(),
+//                        userRequest.getPassword()
+//                )
+//        );
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        final String token = jwtTokenUtil.generateToken(authentication);
+//        return ResponseEntity.ok(new AuthToken(token));
+//    }
+//}

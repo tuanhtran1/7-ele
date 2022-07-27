@@ -15,7 +15,7 @@ public class ProductMapper {
 
     public ProductDTO toDTO(ProductEntity entity) {
         ProductDTO productDTO = new ProductDTO();
-        productDTO = modelMapper.map(entity,ProductDTO.class);
+        productDTO = modelMapper.map(entity, ProductDTO.class);
         return productDTO;
     }
 

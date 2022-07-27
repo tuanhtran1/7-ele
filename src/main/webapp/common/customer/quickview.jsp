@@ -5,7 +5,7 @@
   Time: 11:47 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <section class="hero-area hero-slider-2">
     <div class="container">
@@ -18,7 +18,7 @@
                                                                 "dots":true
                                                                 }'>
                     <div class="single-slide bg-image bg-position-left bg-position-lg-center"
-                         data-bg="image/bg-images/home-2-slider-1.jpg">
+                         data-bg="https://htmldemo.net/pustok/pustok/image/bg-images/home-2-slider-1.jpg">
                         <div class="home-content text-left text-md-center pl--30 pl-md--0">
                             <div class="row">
                                 <div class="col-lg-7 col-xl-5 col-md-6 col-sm-6">
@@ -26,14 +26,14 @@
                                     <h2>INSTA</h2>
                                     <p>Cover up front of book and
                                         <br>leave summary</p>
-                                    <a href="shop-grid.html" class="btn btn-outlined--primary">
+                                    <a href="/customer/home" class="btn btn-outlined--primary">
                                         Shop Now
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="single-slide bg-image" data-bg="image/bg-images/home-2-slider-2.jpg">
+                    <div class="single-slide bg-image" data-bg="https://htmldemo.net/pustok/pustok/image/bg-images/home-2-slider-2.jpg">
                         <div class="home-content pl--30">
                             <div class="row">
                                 <div class="col-lg-7">
@@ -64,7 +64,7 @@
                     <div class="single-slide">
                         <div class="product-card card-style-list">
                             <div class="card-image">
-                                <img src="image/products/product-1.jpg" alt="">
+                                <img src="/template/customer/image/products/product-1.jpg" alt="">
                             </div>
                             <div class="product-card--body">
                                 <div class="product-header">
@@ -85,7 +85,7 @@
                     <div class="single-slide">
                         <div class="product-card card-style-list">
                             <div class="card-image">
-                                <img src="image/products/product-2.jpg" alt="">
+                                <img src="/template/customer/image/products/product-2.jpg" alt="">
                             </div>
                             <div class="product-card--body">
                                 <div class="product-header">
@@ -106,7 +106,7 @@
                     <div class="single-slide">
                         <div class="product-card card-style-list">
                             <div class="card-image">
-                                <img src="image/products/product-3.jpg" alt="">
+                                <img src="/template/customer/image/products/product-3.jpg" alt="">
                             </div>
                             <div class="product-card--body">
                                 <div class="product-header">
@@ -127,7 +127,7 @@
                     <div class="single-slide">
                         <div class="product-card card-style-list">
                             <div class="card-image">
-                                <img src="image/products/product-4.jpg" alt="">
+                                <img src="/template/customer/image/products/product-4.jpg" alt="">
                             </div>
                             <div class="product-card--body">
                                 <div class="product-header">
@@ -148,7 +148,7 @@
                     <div class="single-slide">
                         <div class="product-card card-style-list">
                             <div class="card-image">
-                                <img src="image/products/product-5.jpg" alt="">
+                                <img src="/template/customer/image/products/product-5.jpg" alt="">
                             </div>
                             <div class="product-card--body">
                                 <div class="product-header">
@@ -169,7 +169,7 @@
                     <div class="single-slide">
                         <div class="product-card card-style-list">
                             <div class="card-image">
-                                <img src="image/products/product-7.jpg" alt="">
+                                <img src="/template/customer/image/products/product-7.jpg" alt="">
                             </div>
                             <div class="product-card--body">
                                 <div class="product-header">

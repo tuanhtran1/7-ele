@@ -4,6 +4,7 @@ import com.example.constant.SystemConstant;
 import com.example.dto.ProductDTO;
 import com.example.dto.request.ProductRequest;
 import com.example.entity.ProductEntity;
+import com.example.exception.NotFoundException;
 import com.example.mapper.ProductMapper;
 import com.example.repository.ProductRepository;
 import com.example.service.IProductService;
@@ -22,6 +23,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService implements IProductService {
@@ -44,7 +47,11 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductDTO findById(Long id) {
-        return productMapper.toDTO(productRepository.findById(id).get());
+        Optional<ProductEntity> productOtp = productRepository.findById(id);
+        if(!productOtp.isPresent()) {
+            throw new NotFoundException("Product is not exist");
+        }
+        return productMapper.toDTO(productOtp.get());
     }
 
     @Override
@@ -53,12 +60,12 @@ public class ProductService implements IProductService {
         ProductEntity productEntity = productMapper.toEntity(productRequest);
         MultipartFile fileImg = productRequest.getFileImg();
         String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
-        String fileName= date + fileImg.getOriginalFilename();
+        String fileName = date + fileImg.getOriginalFilename();
 
         Path fileNameAndPath = Paths.get(SystemConstant.UPLOAD_IMG_DIR_PRODUCT, fileName);
-        try{
-            Files.write(fileNameAndPath,fileImg.getBytes());
-        }catch (IOException e){
+        try {
+            Files.write(fileNameAndPath, fileImg.getBytes());
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -83,10 +90,16 @@ public class ProductService implements IProductService {
     @Transactional
     public void delete(Long id) {
         File imgProduct = new File(SystemConstant.UPLOAD_IMG_DIR_PRODUCT + File.separator + productRepository.findById(id).get().getImage());
-        if(imgProduct.delete()) {
+        if (imgProduct.delete()) {
             System.out.println("Delete Success !");
-        }
-        else System.out.println("Cannot delete file !");
+        } else System.out.println("Cannot delete file !");
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ProductDTO> findByCategoryCode(String code) {
+        return productRepository.findByCategory_Code(code).stream()
+                .map(item -> productMapper.toDTO(item))
+                .collect(Collectors.toList());
     }
 }

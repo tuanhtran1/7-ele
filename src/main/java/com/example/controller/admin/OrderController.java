@@ -20,7 +20,7 @@ public class OrderController {
     public ModelAndView getProducts() {
         ModelAndView mav = new ModelAndView("admin/order-list");
         List<OrderDTO> orders = restTemplate.getForObject("/api/orders", List.class);
-        mav.addObject("ordersList",orders);
+        mav.addObject("ordersList", orders);
         return mav;
     }
 

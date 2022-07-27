@@ -6,15 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@include file="/common/taglib.jsp"%>
+         pageEncoding="UTF-8" %>
+<%@include file="/common/taglib.jsp" %>
 
 <div class="topbar">
     <!-- Navbar -->
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-end mb-0">
             <li class="dropdown hide-phone">
-                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown"
+                   href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
                     <i data-feather="search" class="topbar-icon"></i>
                 </a>
@@ -23,7 +24,8 @@
                     <!-- Top Search Bar -->
                     <div class="app-search-topbar">
                         <form action="#" method="get">
-                            <input type="search" name="search" class="from-control top-search mb-0" placeholder="Type text...">
+                            <input type="search" name="search" class="from-control top-search mb-0"
+                                   placeholder="Type text...">
                             <button type="submit"><i class="ti-search"></i></button>
                         </form>
                     </div>
@@ -31,7 +33,8 @@
             </li>
 
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown"
+                   href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
                     <i data-feather="bell" class="align-self-center topbar-icon"></i>
                     <span class="badge bg-danger rounded-pill noti-icon-badge">2</span>
@@ -116,16 +119,22 @@
             </li>
 
             <li class="dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#"
+                   role="button"
                    aria-haspopup="false" aria-expanded="false">
-                    <span class="ms-1 nav-user-name hidden-sm">Nick</span>
-                    <img src="assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs" />
+                    <span class="ms-1 nav-user-name hidden-sm"><security:authentication property="name"/></span>
+                    <img src="/template/admin/assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs"/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
+                    <a class="dropdown-item" href="#"><i data-feather="user"
+                                                         class="align-self-center icon-xs icon-dual me-1"></i>
+                        Profile</a>
+                    <a class="dropdown-item" href="#"><i data-feather="settings"
+                                                         class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
                     <div class="dropdown-divider mb-0"></div>
-                    <a class="dropdown-item" href="#"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                    <a class="dropdown-item" href="#"><i data-feather="power"
+                                                         class="align-self-center icon-xs icon-dual me-1"></i>
+                        Logout</a>
                 </div>
             </li>
         </ul><!--end topbar-nav-->
@@ -138,7 +147,8 @@
             </li>
             <li class="creat-btn">
                 <div class="nav-link">
-                    <a class=" btn btn-sm btn-soft-primary" href="#" role="button"><i class="fas fa-plus me-2"></i>New Task</a>
+                    <a class=" btn btn-sm btn-soft-primary" href="#" role="button"><i class="fas fa-plus me-2"></i>New
+                        Task</a>
                 </div>
             </li>
         </ul>

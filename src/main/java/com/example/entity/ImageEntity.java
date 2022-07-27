@@ -5,16 +5,16 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name="image")
+@Table(name = "image")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImageEntity extends BaseEntity{
+public class ImageEntity extends BaseEntity {
 
-    @Column(name="image")
+    @Column(name = "image")
     private String image;
 
     @ManyToOne
-    @JoinColumn(name="productid")
+    @JoinColumn(name = "productid")
     private ProductEntity product;
 }

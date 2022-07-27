@@ -16,6 +16,6 @@ public class OrderDetailRepositoryCustomImpl implements OrderDetailRepositoryCus
     @Override
     public List<OrderDetailEntity> findByOrderId(Long id) {
         StringBuilder JPQL = new StringBuilder("SELECT o FROM OrderDetailEntity o WHERE o.orderProduct.id= " + id);
-        return entityManager.createQuery(JPQL.toString(),OrderDetailEntity.class).getResultList();
+        return entityManager.createQuery(JPQL.toString(), OrderDetailEntity.class).getResultList();
     }
 }
