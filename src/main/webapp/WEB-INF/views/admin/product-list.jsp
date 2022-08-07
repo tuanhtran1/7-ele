@@ -49,7 +49,10 @@
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Category</th>
                         <th>Price</th>
+                        <th>Discount</th>
+                        <th>Sale Price</th>
                         <th>Quantity</th>
                         <th>Decription</th>
                         <th>Avai.Color</th>
@@ -67,7 +70,10 @@
                                     <br> <span class="text-muted font-13">size-08
 														(Model 2020)</span>
                                 </p></td>
+                            <td>${p.category.value}</td>
                             <td>${p.price}</td>
+                            <td>${p.discount}</td>
+                            <td>${p.salePrice}</td>
                             <td>${p.quantity}</td>
                             <td>${p.description}</td>
                             <td>
@@ -112,12 +118,35 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label
+                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Category:</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <select name="categoryCode" class="form-control col-lg-9 col-xl-8" id="category">
+                                                                <c:forEach var="category" items="${categories}">
+                                                                    <option <c:if test="${category.value == p.category.value}">selected="selected"</c:if>
+                                                                            value="${category.code}">${category.value}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label
                                                                 class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Price:</label>
                                                         <div class="col-lg-9 col-xl-8">
                                                             <input name="price" class="form-control" type="text"
                                                                    value="${p.price}"/>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group row">
+                                                        <label
+                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Discount(%):</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input name="discount" class="form-control" type="text"
+                                                                   value="${p.discount}"/>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group row">
                                                         <label
                                                                 class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Quantity:</label>
@@ -207,11 +236,32 @@
                 </div>
                 <div class="form-group row">
                     <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Category:</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <select name="categoryCode" class="form-control col-lg-9 col-xl-8" id="district">
+                            <option>---Choose category---</option>
+                            <c:forEach var="category" items="${categories}">
+                                <option value="${category.code}">${category.value}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label
                             class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Price:</label>
                     <div class="col-lg-9 col-xl-8">
                         <input id="price" name="price" class="form-control" type="text"/>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Discount(%):</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input id="discount" name="discount" class="form-control" type="text"/>
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <label
                             class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Quantity:</label>

@@ -122,7 +122,7 @@
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#"
                    role="button"
                    aria-haspopup="false" aria-expanded="false">
-                    <span class="ms-1 nav-user-name hidden-sm"><security:authentication property="name"/></span>
+                    <span class="ms-1 nav-user-name hidden-sm"><security:authentication property="principal.fullName"/></span>
                     <img src="/template/admin/assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs"/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
@@ -132,7 +132,7 @@
                     <a class="dropdown-item" href="#"><i data-feather="settings"
                                                          class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
                     <div class="dropdown-divider mb-0"></div>
-                    <a class="dropdown-item" href="#"><i data-feather="power"
+                    <a class="dropdown-item" href="/logout"><i data-feather="power"
                                                          class="align-self-center icon-xs icon-dual me-1"></i>
                         Logout</a>
                 </div>

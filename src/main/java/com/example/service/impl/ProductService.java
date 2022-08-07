@@ -6,6 +6,7 @@ import com.example.dto.request.ProductRequest;
 import com.example.entity.ProductEntity;
 import com.example.exception.NotFoundException;
 import com.example.mapper.ProductMapper;
+import com.example.repository.CategoryRepository;
 import com.example.repository.ProductRepository;
 import com.example.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public List<ProductDTO> findAll() {
         List<ProductDTO> productDTOs = new ArrayList<>();
@@ -58,6 +62,7 @@ public class ProductService implements IProductService {
     @Transactional
     public ProductDTO insert(ProductRequest productRequest) {
         ProductEntity productEntity = productMapper.toEntity(productRequest);
+        productEntity.setCategory(categoryRepository.findByCode(productRequest.getCategoryCode()));
         MultipartFile fileImg = productRequest.getFileImg();
         String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
         String fileName = date + fileImg.getOriginalFilename();
@@ -68,7 +73,7 @@ public class ProductService implements IProductService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        productEntity.setSalePrice((productRequest.getDiscount() == 0)? productEntity.getPrice():productEntity.getPrice() - (productEntity.getPrice()*(productRequest.getDiscount()/100)));
         productEntity.setImage(fileName);
         return productMapper.toDTO(productRepository.save(productEntity));
     }
@@ -80,7 +85,10 @@ public class ProductService implements IProductService {
         productEntity.setName(productRequest.getName());
         productEntity.setDescription(productRequest.getDescription());
 //        productEntity.setImage(productRequest.getImage());
+        productEntity.setCategory(categoryRepository.findByCode(productRequest.getCategoryCode()));
         productEntity.setPrice(productRequest.getPrice());
+        productEntity.setDiscount(productRequest.getDiscount());
+        productEntity.setSalePrice((productRequest.getDiscount() == 0)? productEntity.getPrice():productEntity.getPrice() - (productEntity.getPrice()*(productRequest.getDiscount()/100)));
         productEntity.setQuantity(productRequest.getQuantity());
 
         return productMapper.toDTO(productRepository.save(productEntity));
@@ -97,8 +105,22 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductDTO> findByCategoryCode(String code) {
-        return productRepository.findByCategory_Code(code).stream()
+    public List<ProductDTO> findByCategoryId(Long id) {
+        return productRepository.findByCategory_Id(id).stream()
+                .map(item -> productMapper.toDTO(item))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductDTO> getListOfDiscount() {
+        return productRepository.findByDiscountGreaterThan(0F).stream()
+                .map(item -> productMapper.toDTO(item))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductDTO> getListNewAdd() {
+        return productRepository.getProductNewAdd().stream()
                 .map(item -> productMapper.toDTO(item))
                 .collect(Collectors.toList());
     }

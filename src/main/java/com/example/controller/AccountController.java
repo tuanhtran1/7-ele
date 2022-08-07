@@ -8,9 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AccountController {
 
-    @RequestMapping(value = "/login-admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/customer/login", method = RequestMethod.GET)
     public ModelAndView login() {
-        ModelAndView mav = new ModelAndView("admin/login");
+        ModelAndView mav = new ModelAndView("customer/login");
+        mav.addObject("disable", "on"); //disable quickview + supporthelp
         return mav;
     }
 }

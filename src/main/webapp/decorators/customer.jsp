@@ -18,7 +18,17 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/template/customer/css/main.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="/template/customer/image/favicon.ico">
 
+    <%--    jquery--%>
+    <script src="/template/admin/assets/js/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
+<style>
+    .swal2-popup {
+        font-size: 14px !important;
+        font-family: Georgia, serif;
+    }
+</style>
 <body>
 <div class="site-wrapper" id="top">
     <%--    Header--%>
@@ -40,5 +50,8 @@
 <script src="/template/customer/js/plugins.js"></script>
 <script src="/template/customer/js/ajax-mail.js"></script>
 <script src="/template/customer/js/custom.js"></script>
+
+
+
 </body>
 </html>

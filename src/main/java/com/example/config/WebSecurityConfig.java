@@ -4,6 +4,7 @@ import com.example.security.CustomSuccessHandler;
 import com.example.service.impl.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,7 +16,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -48,11 +49,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/template**","/api**","/products/**").permitAll()
                 //controller
                 .antMatchers("/admin/**").hasAnyRole("ADMIN","MANAGER")
-                .antMatchers("/login-admin").permitAll()
+                .antMatchers("/customer/login").permitAll()
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage("/login-admin").usernameParameter("email").passwordParameter("password").permitAll()
-                .loginProcessingUrl("/admin/j_spring_security_check")
+                .formLogin().loginPage("/customer/login").usernameParameter("email").passwordParameter("password").permitAll()
+                .loginProcessingUrl("/j_spring_security_check")
                 .successHandler(myAuthenticationSuccessHandler())
                 .failureUrl("/login?incorrectAccount").and()
                 .logout().logoutUrl("/logout").deleteCookies("JSESSIONID")

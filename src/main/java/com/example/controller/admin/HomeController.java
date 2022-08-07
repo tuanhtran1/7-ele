@@ -18,7 +18,7 @@ public class HomeController {
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView("admin/product-list");
         mav.addObject("products", productService.findAll());
-        System.out.println(SecurityUtils.getPrincipal().getName());
+        System.out.println(SecurityUtils.getPrincipal().getFullName());
         return mav;
     }
 

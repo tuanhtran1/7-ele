@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-3">
-                    <a href="index.html" class="site-brand">
+                    <a href="/customer/home" class="site-brand">
                         <img src="/template/customer/image/logo.png" alt="">
                     </a>
                 </div>
@@ -22,51 +22,42 @@
                         <button>Tìm kiếm</button>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
+
                     <div class="main-navigation flex-lg-right">
                         <div class="cart-widget">
-                            <div class="login-block">
-                                <a href="login-register.html" class="font-weight-bold">Đăng nhập</a> <br>
-                                <span>hoặc</span><a href="login-register.html">Đăng kí</a>
-                            </div>
-                            <div class="cart-block">
-                                <div class="cart-total">
-                                            <span class="text-number">
-                                                1
-                                            </span>
-                                    <span class="text-item">
-                                                Giỏ đồ
-                                            </span>
-                                    <span class="price">
-                                                £0.00
-                                                <i class="fas fa-chevron-down"></i>
-                                            </span>
+                            <security:authorize access="isAuthenticated() == false ">
+                                <div class="login-block">
+                                    <a href="/customer/login" class="font-weight-bold">Đăng nhập</a> <br>
+                                    <span>hoặc</span><a href="login-register.html">Đăng kí</a>
                                 </div>
-                                <div class="cart-dropdown-block">
-                                    <div class=" single-cart-block ">
-                                        <div class="cart-product">
-                                            <a href="product-details.html" class="image">
-                                                <img src="/template/customer/image/products/cart-product-1.jpg" alt="">
-                                            </a>
-                                            <div class="content">
-                                                <h3 class="title"><a href="product-details.html">Kodak PIXPRO
-                                                    Astro Zoom AZ421 16 MP</a>
-                                                </h3>
-                                                <p class="price"><span class="qty">1 ×</span> £87.34</p>
-                                                <button class="cross-btn"><i class="fas fa-times"></i></button>
+                            </security:authorize>
+
+                            <security:authorize access="isAuthenticated()">
+                                <div class="login-block">
+                                    <span>Xin chào: <security:authentication property="principal.fullName"/></span>
+                                    <a href="/logout" class="font-weight-bold">Đăng xuất</a> <br>
+                                </div>
+                                <div class="cart-block">
+                                    <div class="cart-total" id="cart-info">
+<%--                                        callapi--%>
+                                    </div>
+                                    <div class="cart-dropdown-block" id="cart-dropdown-block">
+                                        <div class=" single-cart-block " id="carts-detail">
+<%--                                            callapi--%>
+                                        </div>
+                                        <div class=" single-cart-block ">
+                                            <div class="btn-block">
+                                                <a href="/customer/cart/<security:authentication property="principal.id"/>" class="btn">View Cart <i
+                                                        class="fas fa-chevron-right"></i></a>
+                                                <a href="checkout.html" class="btn btn--primary">Check Out <i
+                                                        class="fas fa-chevron-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" single-cart-block ">
-                                        <div class="btn-block">
-                                            <a href="cart.html" class="btn">View Cart <i
-                                                    class="fas fa-chevron-right"></i></a>
-                                            <a href="checkout.html" class="btn btn--primary">Check Out <i
-                                                    class="fas fa-chevron-right"></i></a>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
+                            </security:authorize>
                         </div>
                         <!-- @include('menu.htm') -->
                     </div>
@@ -568,3 +559,4 @@
         </div>
     </div>
 </div>
+

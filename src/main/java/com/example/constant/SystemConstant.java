@@ -18,7 +18,7 @@ public class SystemConstant {
     public static final String AUTHORITIES_KEY = "scopes";
 
     public static final String CUSTOMER_HOME = "/customer/home";
-    public static final String ADMIN_HOME = "/admin/home";
+    public static final String ADMIN_HOME = "/admin/product-list";
 
     public static final String EMAIL_REGEX = "^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,10}$";
 

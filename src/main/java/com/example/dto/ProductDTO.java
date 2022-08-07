@@ -19,7 +19,11 @@ public class ProductDTO {
 
     private Float price;
 
+    private Float discount;
+
     private Float salePrice;
 
     private String image;
+
+    private CategoryDTO category;
 }

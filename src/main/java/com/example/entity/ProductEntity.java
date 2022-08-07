@@ -32,6 +32,9 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "price")
     private Float price;
 
+    @Column(name = "total_order")
+    private Integer totalOrder;
+
     @Column(name = "image")
     private String image;
 

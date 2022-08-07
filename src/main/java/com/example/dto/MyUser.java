@@ -16,7 +16,7 @@ public class MyUser extends User {
 	}
 
 	private Long id;
-	private String name;
+	private String fullName;
 
 	public Long getId() {
 		return id;
@@ -26,11 +26,12 @@ public class MyUser extends User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 }

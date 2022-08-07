@@ -53,8 +53,8 @@ public class ProductAPI {
         productService.delete(id);
     }
 
-    @GetMapping("/product/category/{code}")
-    public List<ProductDTO> getProductByCategory(@PathVariable String code) {
-        return productService.findByCategoryCode(code);
+    @GetMapping("/product/category/{id}")
+    public List<ProductDTO> getProductByCategory(@PathVariable Long id) {
+        return productService.findByCategoryId(id);
     }
 }

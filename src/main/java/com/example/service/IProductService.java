@@ -17,5 +17,11 @@ public interface IProductService {
 
     void delete(Long id);
 
-    List<ProductDTO> findByCategoryCode(String code);
+    List<ProductDTO> findByCategoryId(Long id);
+
+    //feature
+
+    List<ProductDTO> getListOfDiscount();
+
+    List<ProductDTO> getListNewAdd();
 }

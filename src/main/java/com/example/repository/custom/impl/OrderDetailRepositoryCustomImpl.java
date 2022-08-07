@@ -2,11 +2,13 @@ package com.example.repository.custom.impl;
 
 import com.example.entity.OrderDetailEntity;
 import com.example.repository.custom.OrderDetailRepositoryCustom;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Repository
 public class OrderDetailRepositoryCustomImpl implements OrderDetailRepositoryCustom {
 
     @PersistenceContext
