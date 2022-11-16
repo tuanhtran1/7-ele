@@ -5,7 +5,7 @@
   Time: 11:04 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <footer style="margin-top: 50px" class="site-footer">
     <div class="container">
@@ -13,7 +13,7 @@
             <div class=" col-xl-3 col-lg-4 col-sm-6">
                 <div class="single-footer pb--40">
                     <div class="brand-footer footer-title">
-                        <img src="image/logo--footer.png" alt="">
+                        <img src="/template/customer/image/logo--footer.png" alt="">
                     </div>
                     <div class="footer-contact">
                         <p><span class="label">Address:</span><span class="text">Example Street 98, HH2 BacHa, New
@@ -71,7 +71,7 @@
                 vel
                 magna volutpat, posuere eros</p>
             <a href="#" class="payment-block">
-                <img src="image/icon/payment.png" alt="">
+                <img src="/template/customer/image/icon/payment.png" alt="">
             </a>
             <p class="copyright-text">Copyright © 2019 <a href="#" class="author">Pustok</a>. All Right Reserved.
                 <br>

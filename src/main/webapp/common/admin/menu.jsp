@@ -6,17 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 
 <div class="left-sidenav">
     <!-- LOGO -->
     <div class="brand">
         <a href="index.html" class="logo"> <span> <img
-                src="assets/images/logo-sm.png" alt="logo-small"
+                src="/template/admin/assets/images/logo-sm.png" alt="logo-small"
                 class="logo-sm">
-		</span> <span> <img src="assets/images/logo.png"
+		</span> <span> <img src="/template/admin/assets/images/logo.png"
                             alt="logo-large" class="logo-lg logo-light"> <img
-                src="assets/images/logo-dark.png"
+                src="/template/admin/assets/images/logo-dark.png"
                 alt="logo-large" class="logo-lg logo-dark">
 		</span>
         </a>
@@ -31,10 +31,17 @@
                     class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li class="nav-item"><a class="nav-link"
-                                            href="/admin/product-list"><i class="ti-control-record"></i>Products</a></li>
+                                            href="/admin/dashboard"><i class="ti-control-record"></i>Dashboard</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link"
-                                            href="/admin/order-list"><i class="ti-control-record"></i>Oders</a></li>
-                </ul></li>
+                                            href="/admin/product-list"><i class="ti-control-record"></i>Products</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/order-list"><i class="ti-control-record"></i>Orders</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/received-note"><i class="ti-control-record"></i>Received note</a></li>
+                </ul>
+            </li>
 
             <li><a href="#"><i data-feather="layers"
                                class="align-self-center menu-icon"></i><span>Widgets</span><span
@@ -56,10 +63,13 @@
                                             href="pages-starter.html"><i class="ti-control-record"></i>Starter
                         Page</a></li>
                     <li class="nav-item"><a class="nav-link"
-                                            href="pages-timeline.html"><i class="ti-control-record"></i>Timeline</a></li>
+                                            href="pages-timeline.html"><i class="ti-control-record"></i>Timeline</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link"
-                                            href="pages-treeview.html"><i class="ti-control-record"></i>Treeview</a></li>
-                </ul></li>
+                                            href="pages-treeview.html"><i class="ti-control-record"></i>Treeview</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <div class="update-msg text-center">

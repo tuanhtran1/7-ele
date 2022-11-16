@@ -19,5 +19,11 @@ public class ProductRequest {
 
     private Float price;
 
+    private Float discount;
+
+    private String categoryCode; //Code
+
     private MultipartFile fileImg;
+    
+    private String author;
 }

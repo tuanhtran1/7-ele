@@ -18,8 +18,8 @@ public class OrderDetailController {
     @RequestMapping(value = "/admin/orderdetail-list/{id}", method = RequestMethod.GET)
     public ModelAndView getOrderDetailHome(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("admin/orderdetail-list");
-        List<OrderDetailDTO> detailDTOList = restTemplate.getForObject("/api/orderdetail?idOrder="+id,List.class);
-        mav.addObject("orderDetails",detailDTOList);
+        List<OrderDetailDTO> detailDTOList = restTemplate.getForObject("/api/orderdetail?idOrder=" + id, List.class);
+        mav.addObject("orderDetails", detailDTOList);
 
         return mav;
     }

@@ -9,6 +9,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 @MappedSuperclass
@@ -23,7 +25,7 @@ public abstract class BaseEntity {
 
     @Column(name = "createddate")
     @CreatedDate
-    private Date createdDate;
+    private Date createdDate = new Date();
 
     @Column(name = "createdby")
     @CreatedBy

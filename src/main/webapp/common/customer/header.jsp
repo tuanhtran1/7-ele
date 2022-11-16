@@ -5,68 +5,59 @@
   Time: 11:03 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <div class="site-header header-2 mb--20 d-none d-lg-block">
     <div class="header-middle pt--10 pb--10">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-3">
-                    <a href="index.html" class="site-brand">
-                        <img src="image/logo.png" alt="">
+                    <a href="/customer/home" class="site-brand">
+                        <img src="/template/customer/image/logo.png" alt="">
                     </a>
                 </div>
                 <div class="col-lg-5">
                     <div class="header-search-block">
-                        <input type="text" placeholder="Search entire store here">
-                        <button>Search</button>
+                        <input id="searchProduct" type="text" placeholder="Bạn muốn tìm kiếm gì ?">
+                        <button onclick="search()">Tìm kiếm</button>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
+
                     <div class="main-navigation flex-lg-right">
                         <div class="cart-widget">
-                            <div class="login-block">
-                                <a href="login-register.html" class="font-weight-bold">Login</a> <br>
-                                <span>or</span><a href="login-register.html">Register</a>
-                            </div>
-                            <div class="cart-block">
-                                <div class="cart-total">
-                                            <span class="text-number">
-                                                1
-                                            </span>
-                                    <span class="text-item">
-                                                Shopping Cart
-                                            </span>
-                                    <span class="price">
-                                                £0.00
-                                                <i class="fas fa-chevron-down"></i>
-                                            </span>
+                            <security:authorize access="isAuthenticated() == false ">
+                                <div class="login-block">
+                                    <a href="/customer/login" class="font-weight-bold">Đăng nhập</a> <br>
+                                    <span>hoặc</span><a href="/customer/register">Đăng kí</a>
                                 </div>
-                                <div class="cart-dropdown-block">
-                                    <div class=" single-cart-block ">
-                                        <div class="cart-product">
-                                            <a href="product-details.html" class="image">
-                                                <img src="image/products/cart-product-1.jpg" alt="">
-                                            </a>
-                                            <div class="content">
-                                                <h3 class="title"><a href="product-details.html">Kodak PIXPRO
-                                                    Astro Zoom AZ421 16 MP</a>
-                                                </h3>
-                                                <p class="price"><span class="qty">1 ×</span> £87.34</p>
-                                                <button class="cross-btn"><i class="fas fa-times"></i></button>
+                            </security:authorize>
+
+                            <security:authorize access="isAuthenticated()">
+                                <div class="login-block">
+                                    <span>Xin chào: <a href="/customer/account"><security:authentication property="principal.fullName"/></a></span>
+                                    <a href="/logout" class="font-weight-bold">Đăng xuất</a> <br>
+                                </div>
+                                <div class="cart-block">
+                                    <div class="cart-total" id="cart-info">
+<%--                                        callapi--%>
+                                    </div>
+                                    <div class="cart-dropdown-block" id="cart-dropdown-block">
+                                        <div class=" single-cart-block " id="carts-detail">
+<%--                                            callapi--%>
+                                        </div>
+                                        <div class=" single-cart-block ">
+                                            <div id="blockCart" class="btn-block">
+<%--                                                <a href="/customer/cart/<security:authentication property="principal.id"/>" class="btn">View Cart <i--%>
+<%--                                                        class="fas fa-chevron-right"></i></a>--%>
+<%--                                                <a href="/customer/checkout/<security:authentication property="principal.id"/>" class="btn btn--primary">Check Out <i--%>
+<%--                                                        class="fas fa-chevron-right"></i></a>--%>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" single-cart-block ">
-                                        <div class="btn-block">
-                                            <a href="cart.html" class="btn">View Cart <i
-                                                    class="fas fa-chevron-right"></i></a>
-                                            <a href="checkout.html" class="btn btn--primary">Check Out <i
-                                                    class="fas fa-chevron-right"></i></a>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
+                            </security:authorize>
                         </div>
                         <!-- @include('menu.htm') -->
                     </div>
@@ -84,104 +75,11 @@
                                     class="fa fa-bars"></i>Browse
                                 categories</a>
                             <ul class="category-menu">
-                                <li class="cat-item has-children">
-                                    <a href="#">Arts & Photography</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">Bags & Cases</a></li>
-                                        <li><a href="#">Binoculars & Scopes</a></li>
-                                        <li><a href="#">Digital Cameras</a></li>
-                                        <li><a href="#">Film Photography</a></li>
-                                        <li><a href="#">Lighting & Studio</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children mega-menu"><a href="#">Biographies</a>
-                                    <ul class="sub-menu">
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Business & Money</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Calendars</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Children's Books</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Comics</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item"><a href="#">Perfomance Filters</a></li>
-                                <li class="cat-item has-children"><a href="#">Cookbooks</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item "><a href="#">Accessories</a></li>
-                                <li class="cat-item "><a href="#">Education</a></li>
-                                <li class="cat-item hidden-menu-item"><a href="#">Indoor Living</a></li>
+                                <c:forEach var="item" items="${categories}" begin="0" end="7">
+                                    <li class="cat-item">
+                                        <a type="button" onclick="category('${item.code}')">${item.value}</a>
+                                    </li>
+                                </c:forEach>
                                 <li class="cat-item"><a href="#" class="js-expand-hidden-menu">More
                                     Categories</a></li>
                             </ul>
@@ -194,28 +92,20 @@
                             <i class="fas fa-headphones-alt"></i>
                         </div>
                         <div class="text">
-                            <p>Free Support 24/7</p>
-                            <p class="font-weight-bold number">+01-202-555-0181</p>
+                            <p>Hỗ trợ miễn phí</p>
+                            <p class="font-weight-bold number">+84-333-054-989</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="main-navigation flex-lg-right">
                         <ul class="main-menu menu-right main-menu--white li-last-0">
-                            <li class="menu-item has-children">
-                                <a href="javascript:void(0)">Home <i
-                                        class="fas fa-chevron-down dropdown-arrow"></i></a>
-                                <ul class="sub-menu">
-                                    <li> <a href="index.html">Home One</a></li>
-                                    <li> <a href="index-2.html">Home Two</a></li>
-                                    <li> <a href="index-3.html">Home Three</a></li>
-                                    <li> <a href="index-4.html">Home Four</a></li>
-                                    <li> <a href="index-5.html">Home Five</a></li>
-                                </ul>
+                            <li class="menu-item">
+                                <a href="#">Trang chủ</a>
                             </li>
                             <!-- Shop -->
                             <li class="menu-item has-children mega-menu">
-                                <a href="javascript:void(0)">shop <i
+                                <a href="/customer/products">shop <i
                                         class="fas fa-chevron-down dropdown-arrow"></i></a>
                                 <ul class="sub-menu four-column">
                                     <li class="cus-col-25">
@@ -227,7 +117,7 @@
                                         </ul>
                                     </li>
                                     <li class="cus-col-25">
-                                        <h3 class="menu-title"> <a href="javascript:void(0)">Shop List</a></h3>
+                                        <h3 class="menu-title"><a href="javascript:void(0)">Shop List</a></h3>
                                         <ul class="mega-single-block">
                                             <li><a href="shop-list.html">Fullwidth</a></li>
                                             <li><a href="shop-list-left-sidebar.html">left Sidebar</a></li>
@@ -235,7 +125,7 @@
                                         </ul>
                                     </li>
                                     <li class="cus-col-25">
-                                        <h3 class="menu-title"> <a href="javascript:void(0)">Product Details
+                                        <h3 class="menu-title"><a href="javascript:void(0)">Product Details
                                             1</a></h3>
                                         <ul class="mega-single-block">
                                             <li><a href="product-details.html">Product Details Page</a></li>
@@ -314,7 +204,7 @@
                                 </ul>
                             </li>
                             <li class="menu-item">
-                                <a href="contact.html">Contact</a>
+                                <a href="contact.html">Liên hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -323,13 +213,14 @@
         </div>
     </div>
 </div>
+
 <div class="site-mobile-menu">
     <header class="mobile-header d-block d-lg-none pt--10 pb-md--10">
         <div class="container">
             <div class="row align-items-sm-end align-items-center">
                 <div class="col-md-4 col-7">
                     <a href="index.html" class="site-brand">
-                        <img src="image/logo.png" alt="">
+                        <img src="/template/customer/image/logo.png" alt="">
                     </a>
                 </div>
                 <div class="col-md-5 order-3 order-md-2">
@@ -339,7 +230,7 @@
                                     class="fa fa-bars"></i>Browse
                                 categories</a>
                             <ul class="category-menu">
-                                <li class="cat-item has-children">
+                                <li class="cat-item">
                                     <a href="#">Arts & Photography</a>
                                     <ul class="sub-menu">
                                         <li><a href="#">Bags & Cases</a></li>
@@ -349,94 +240,7 @@
                                         <li><a href="#">Lighting & Studio</a></li>
                                     </ul>
                                 </li>
-                                <li class="cat-item has-children mega-menu"><a href="#">Biographies</a>
-                                    <ul class="sub-menu">
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="single-block">
-                                            <h3 class="title">WHEEL SIMULATORS</h3>
-                                            <ul>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Binoculars & Scopes</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Film Photography</a></li>
-                                                <li><a href="#">Lighting & Studio</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Business & Money</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Calendars</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Children's Books</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item has-children"><a href="#">Comics</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item"><a href="#">Perfomance Filters</a></li>
-                                <li class="cat-item has-children"><a href="#">Cookbooks</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">Brake Tools</a></li>
-                                        <li><a href="">Driveshafts</a></li>
-                                        <li><a href="">Emergency Brake</a></li>
-                                        <li><a href="">Spools</a></li>
-                                    </ul>
-                                </li>
-                                <li class="cat-item "><a href="#">Accessories</a></li>
-                                <li class="cat-item "><a href="#">Education</a></li>
-                                <li class="cat-item hidden-menu-item"><a href="#">Indoor Living</a></li>
+
                                 <li class="cat-item"><a href="#" class="js-expand-hidden-menu">More
                                     Categories</a></li>
                             </ul>
@@ -481,11 +285,11 @@
                         <li class="menu-item-has-children">
                             <a href="#">Home</a>
                             <ul class="sub-menu">
-                                <li> <a href="index.html">Home One</a></li>
-                                <li> <a href="index-2.html">Home Two</a></li>
-                                <li> <a href="index-3.html">Home Three</a></li>
-                                <li> <a href="index-4.html">Home Four</a></li>
-                                <li> <a href="index-5.html">Home Five</a></li>
+                                <li><a href="index.html">Home One</a></li>
+                                <li><a href="index-2.html">Home Two</a></li>
+                                <li><a href="index-3.html">Home Three</a></li>
+                                <li><a href="index-4.html">Home Four</a></li>
+                                <li><a href="index-5.html">Home Five</a></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children">
@@ -587,8 +391,8 @@
                     <li class="menu-item-has-children">
                         <a href="#">Currency - USD $ <i class="fas fa-angle-down"></i></a>
                         <ul class="sub-menu">
-                            <li> <a href="cart.html">USD $</a></li>
-                            <li> <a href="checkout.html">EUR €</a></li>
+                            <li><a href="cart.html">USD $</a></li>
+                            <li><a href="checkout.html">EUR €</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
@@ -627,12 +431,13 @@
     </aside>
     <!--Off Canvas Navigation End-->
 </div>
+
 <div class="sticky-init fixed-header common-sticky">
     <div class="container d-none d-lg-block">
         <div class="row align-items-center">
             <div class="col-lg-4">
                 <a href="index.html" class="site-brand">
-                    <img src="image/logo.png" alt="">
+                    <img src="/template/customer/image/logo.png" alt="">
                 </a>
             </div>
             <div class="col-lg-8">
@@ -642,11 +447,11 @@
                             <a href="javascript:void(0)">Home <i
                                     class="fas fa-chevron-down dropdown-arrow"></i></a>
                             <ul class="sub-menu">
-                                <li> <a href="index.html">Home One</a></li>
-                                <li> <a href="index-2.html">Home Two</a></li>
-                                <li> <a href="index-3.html">Home Three</a></li>
-                                <li> <a href="index-4.html">Home Four</a></li>
-                                <li> <a href="index-5.html">Home Five</a></li>
+                                <li><a href="index.html">Home One</a></li>
+                                <li><a href="index-2.html">Home Two</a></li>
+                                <li><a href="index-3.html">Home Three</a></li>
+                                <li><a href="index-4.html">Home Four</a></li>
+                                <li><a href="index-5.html">Home Five</a></li>
                             </ul>
                         </li>
                         <!-- Shop -->
@@ -663,7 +468,7 @@
                                     </ul>
                                 </li>
                                 <li class="cus-col-25">
-                                    <h3 class="menu-title"> <a href="javascript:void(0)">Shop List</a></h3>
+                                    <h3 class="menu-title"><a href="javascript:void(0)">Shop List</a></h3>
                                     <ul class="mega-single-block">
                                         <li><a href="shop-list.html">Fullwidth</a></li>
                                         <li><a href="shop-list-left-sidebar.html">left Sidebar</a></li>
@@ -671,7 +476,7 @@
                                     </ul>
                                 </li>
                                 <li class="cus-col-25">
-                                    <h3 class="menu-title"> <a href="javascript:void(0)">Product Details 1</a>
+                                    <h3 class="menu-title"><a href="javascript:void(0)">Product Details 1</a>
                                     </h3>
                                     <ul class="mega-single-block">
                                         <li><a href="product-details.html">Product Details Page</a></li>
@@ -754,3 +559,4 @@
         </div>
     </div>
 </div>
+

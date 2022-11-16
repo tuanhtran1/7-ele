@@ -17,13 +17,13 @@ public class CartMapper {
 
     public CartDTO toDTO(CartEntity entity) {
         CartDTO cartDTO = new CartDTO();
-        cartDTO = modelMapper.map(entity,CartDTO.class);
+        cartDTO = modelMapper.map(entity, CartDTO.class);
         return cartDTO;
     }
 
     public CartDTO toDTOIgnoreInfoUser(CartEntity entity) {
         CartDTO cartDTO = new CartDTO();
-        cartDTO = modelMapper.map(entity,CartDTO.class);
+        cartDTO = modelMapper.map(entity, CartDTO.class);
 //        cartDTO.setUser(null);
         return cartDTO;
     }

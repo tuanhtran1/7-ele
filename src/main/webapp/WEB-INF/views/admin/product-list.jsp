@@ -5,7 +5,7 @@
   Time: 9:13 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
 <head>
@@ -49,10 +49,13 @@
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Author</th>
+                        <th>Category</th>
                         <th>Price</th>
+                        <th>Discount</th>
+                        <th>Sale Price</th>
                         <th>Quantity</th>
                         <th>Decription</th>
-                        <th>Avai.Color</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -67,23 +70,17 @@
                                     <br> <span class="text-muted font-13">size-08
 														(Model 2020)</span>
                                 </p></td>
+                            <td>${p.author}</td>
+                            <td>${p.category.value}</td>
                             <td>${p.price}</td>
+                            <td>${p.discount}</td>
+                            <td>${p.salePrice}</td>
                             <td>${p.quantity}</td>
                             <td>${p.description}</td>
                             <td>
-                                <ul class="list-inline mb-0">
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-success"></i></li>
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-pink"></i></li>
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-info"></i></li>
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-warning"></i></li>
-                                </ul>
-                            </td>
-                            <td>
-                                <button type="button" data-toggle="tooltip" class="btnEdit" onclick="editProduct(${p.id})"><i class="las la-pen text-secondary font-16"></i></button>
+                                <button type="button" data-toggle="tooltip" class="btnEdit btn btn-sm btn-outline-primary"
+                                        onclick="editProduct(${p.id})"><i style="color: white" class="las la-pen text-secondary font-16"></i>
+                                </button>
                                 <!-- The Modal -->
                                 <div class="modal fade" id="editProductModal${p.id}">
                                     <div class="modal-dialog">
@@ -92,7 +89,8 @@
                                             <!-- Modal Header -->
                                             <div class="modal-header">
                                                 <h4 class="modal-title">Update Product</h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
                                             </div>
 
                                             <!-- Modal body -->
@@ -100,37 +98,69 @@
                                                 <form id="formSubmitUpdate${p.id}" enctype="multipart/form-data">
                                                     <div class="form-group row">
                                                         <label
-                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Product Name:</label>
+                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Product
+                                                            Name:</label>
                                                         <div class="col-lg-9 col-xl-8">
-                                                            <input name="name" class="form-control" type="text" value="${p.name}" />
+                                                            <input name="name" class="form-control" type="text"
+                                                                   value="${p.name}"/>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group row">
+                                                        <label
+                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Author:</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input name="author" class="form-control" type="text"
+                                                                   value="${p.author}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label
+                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Category:</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <select name="categoryCode" class="form-control col-lg-9 col-xl-8" id="category">
+                                                                <c:forEach var="category" items="${categories}">
+                                                                    <option <c:if test="${category.value == p.category.value}">selected="selected"</c:if>
+                                                                            value="${category.code}">${category.value}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group row">
                                                         <label
                                                                 class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Price:</label>
                                                         <div class="col-lg-9 col-xl-8">
-                                                            <input name="price" class="form-control" type="text" value="${p.price}" />
+                                                            <input name="price" class="form-control" type="text"
+                                                                   value="${p.price}"/>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group row">
                                                         <label
-                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Quantity:</label>
+                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Discount(%):</label>
                                                         <div class="col-lg-9 col-xl-8">
-                                                            <input name="quantity" class="form-control" type="text" value="${p.quantity}" />
+                                                            <input name="discount" class="form-control" type="text"
+                                                                   value="${p.discount}"/>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group row">
                                                         <label
                                                                 class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Description:</label>
                                                         <div class="col-lg-9 col-xl-8">
-                                                            <input name="description" class="form-control" type="text" value="${p.description}"/>
+                                                            <input name="description" class="form-control" type="text"
+                                                                   value="${p.description}"/>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <div class="col-lg-9 col-xl-8 offset-lg-3">
-                                                            <button name="Save" type="button" onclick="btnUpdate(${p.id})"
-                                                                    class="btn btn-sm btn-outline-primary">Save</button>
+                                                            <button name="Save" type="button"
+                                                                    onclick="btnUpdate(${p.id})"
+                                                                    class="btn btn-sm btn-outline-primary">Save
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -138,14 +168,17 @@
 
                                             <!-- Modal footer -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                                    Close
+                                                </button>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
 
-                                <button type="button" onclick="deleteProduct(${p.id})" class="btnDelete"><i class="las la-trash-alt text-secondary font-16"></i></button>
+                                <button type="button" onclick="deleteProduct(${p.id})" class="btnDelete btn btn-sm btn-outline-danger"><i
+                                        class="las la-trash-alt text-secondary font-16 "></i></button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -169,95 +202,120 @@
         <!--end card-header-->
         <div class="card-body">
             <!-- Thông báo -->
-                        <c:choose>
-                            <c:when test="${check==null}">
-                            </c:when>
-                            <c:when test="${check == 1}">
-                                <div class="alert alert-success border-0" role="alert">
-                                    <strong>Notification!</strong> ${message}.
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="alert alert-danger border-0" role="alert">
-                                    <strong>Notification!</strong> ${message}.
-                                </div>
-                            </c:otherwise>
-                        </c:choose>
+            <c:choose>
+                <c:when test="${check==null}">
+                </c:when>
+                <c:when test="${check == 1}">
+                    <div class="alert alert-success border-0" role="alert">
+                        <strong>Notification!</strong> ${message}.
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="alert alert-danger border-0" role="alert">
+                        <strong>Notification!</strong> ${message}.
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
-                        <form id="formSubmitAdd" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <label
-                                        class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Product Name:</label>
-                                <div class="col-lg-9 col-xl-8">
-                                    <input id="name" name="name" class="form-control" type="text" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label
-                                        class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Price:</label>
-                                <div class="col-lg-9 col-xl-8">
-                                    <input id="price" name="price" class="form-control" type="text" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label
-                                        class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Quantity:</label>
-                                <div class="col-lg-9 col-xl-8">
-                                    <input id="quantity" name="quantity" class="form-control" type="text"  />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label
-                                        class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Description:</label>
-                                <div class="col-lg-9 col-xl-8">
-                                    <input id="description" name="description" class="form-control" type="text"/>
-                                </div>
-                            </div>
+            <form id="formSubmitAdd" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Product Name:</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input id="name" name="name" class="form-control" type="text"/>
+                    </div>
+                </div>
 
-                            <div class="form-group row">
-                                <label
-                                        class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Image(or not)</label>
-                                <div class="col-lg-9 col-xl-8">
-                                    <input name="image" type="file" id="input-file-now"
-                                           class="dropify">
-                                </div>
-                            </div>
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Author:</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input id="author" name="author" class="form-control" type="text"/>
+                    </div>
+                </div>
 
-                            <div class="form-group row">
-                                <div class="col-lg-9 col-xl-8 offset-lg-3">
-                                    <button name="Save" type="button" id="btnAdd"
-                                                 class="btn btn-sm btn-outline-primary">Add</button>
-                                    <button formaction="" type="submit"
-                                                 class="btn btn-sm btn-outline-danger">Cancel</button>
-                                </div>
-                            </div>
-                        </form>
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Category:</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <select name="categoryCode" class="form-control col-lg-9 col-xl-8" id="district">
+                            <option>---Choose category---</option>
+                            <c:forEach var="category" items="${categories}">
+                                <option value="${category.code}">${category.value}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Price:</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input id="price" name="price" class="form-control" type="text"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Discount(%):</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input id="discount" name="discount" class="form-control" type="text"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Description:</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input id="description" name="description" class="form-control" type="text"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Image(or not)</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input name="image" type="file" id="input-file-now"
+                               class="dropify">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-9 col-xl-8 offset-lg-3">
+                        <button name="Save" type="button" id="btnAdd"
+                                class="btn btn-sm btn-outline-primary">Add
+                        </button>
+                        <button formaction="" type="submit"
+                                class="btn btn-sm btn-outline-danger">Cancel
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
         <!--end card-body-->
     </div>
     <!--end card-->
-
 </div>
 
-<script src="/admin/assets/js/jquery.min.js"></script>
+<script src="/template/admin/assets/js/jquery.min.js"></script>
 
 <script type="text/javascript">
 
-    $('#btnAdd').click(function(e){
+
+    $('#btnAdd').click(function (e) {
         e.preventDefault();
-        var obj =$("#formSubmitAdd");
-        var formData=new FormData();
+        var obj = $("#formSubmitAdd");
+        var formData = new FormData();
 
         var productRequest = {};
         var params = $(obj).serializeArray();
 
         $.each(params, function (i, v) {
-            productRequest[""+v.name+""] = v.value;
+            productRequest["" + v.name + ""] = v.value;
         });
-        $.each($(obj).find("input[type='file']"), function (i,tag) { // tag là 1 <input>
+        $.each($(obj).find("input[type='file']"), function (i, tag) { // tag là 1 <input>
             formData.append(tag.name, tag.files[0]);
         });
-        formData.append('productRequest',JSON.stringify(productRequest))
+        formData.append('productRequest', JSON.stringify(productRequest))
 
         $.ajax({
             url: '/api/product',
@@ -267,18 +325,28 @@
             data: formData,
             enctype: 'multipart/form-data',
             success: function (result) {
-                swal("Notification!", "Add Product Success!", "success");
-                setTimeout(() => window.location.href = "/admin/product-list",2000);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thêm thành công',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
+                setTimeout(() => window.location.href = "/admin/product-list", 2000);
             },
             error: function (error) {
-                swal("Ops! Please try again!");
+                Swal.fire({
+                    icon: 'danger',
+                    title: 'Thêm thất bại',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
             }
         });
     });
 
     function callApiProduct(id) {
         $.ajax({
-            url: '/api/product?id='+id,
+            url: '/api/product?id=' + id,
             type: 'GET',
             contentType: 'application/json',
             dataType: 'json',
@@ -296,17 +364,18 @@
         console.log(id);
         openModalProduct(id);
     }
+
     function openModalProduct(id) {
         // $('#updateProductModal').show();
-        $('#editProductModal'+id).modal('show');
+        $('#editProductModal' + id).modal('show');
     }
 
     function btnUpdate(id) {
         var data = {};
         data["id"] = id;
-        var formData = $('#formSubmitUpdate'+id).serializeArray();
+        var formData = $('#formSubmitUpdate' + id).serializeArray();
         $.each(formData, function (i, v) {
-            data[""+v.name+""] = v.value;
+            data["" + v.name + ""] = v.value;
         });
 
         $.ajax({
@@ -316,34 +385,66 @@
             dataType: "json",
             contentType: "application/json",
             success: function () {
-                swal("Notification!", "Update Product Success!", "success");
-                setTimeout(() => window.location.href = "/admin/product-list",3000);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cập nhật thành công',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
+                setTimeout(() => window.location.href = "/admin/product-list", 3000);
                 console.log('success')
             },
             error: function () {
-                swal("Ops! Please try again!");
-
+                Swal.fire({
+                    icon: 'danger',
+                    title: 'Đã xảy ra lỗi vui lòng thử lại',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
             }
         });
         console.log(data)
     }
 
     function deleteProduct(id) {
-        $.ajax({
-            url: '/api/product?id='+id,
-            type: 'DELETE',
-            contentType: 'application/json',
-            dataType: 'json',
-            success: function (result) {
-                swal("Notification!", "Add Product Success!", "success");
-                setTimeout(() => window.location.href = "/admin/product-list",2000);
+        Swal.fire({
+            title: 'Thông báo',
+            text: "Xác nhận đơn hàng",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '##1761fd',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý!',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/api/product?id=' + id,
+                    type: 'DELETE',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (result) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Xoá sản phẩm thành công',
+                            showConfirmButton: false,
+                            timer: 2000,
+                        })
+                        setTimeout(() => window.location.href = "/admin/product-list", 2000);
 
-            },
-            error: function (error) {
-                swal("Notification!", "Add Product Success!", "success");
-                setTimeout(() => window.location.href = "/admin/product-list",2000);
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Xoá sản phẩm thành công',
+                            showConfirmButton: false,
+                            timer: 2000,
+                        })
+                        setTimeout(() => window.location.href = "/admin/product-list", 2000);
+                    }
+                });
             }
-        });
+        })
     }
 
 </script>

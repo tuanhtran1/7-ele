@@ -24,6 +24,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "status")
+    private Integer status;
+
     @ManyToOne
     @JoinColumn(name = "roleid")
     private RoleEntity role;
@@ -33,4 +36,7 @@ public class UserEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<CartEntity> carts;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<ReceivedNoteEntity> receivedNote;
 }

@@ -6,7 +6,7 @@ import com.example.entity.CartEntity;
 import com.example.entity.ProductEntity;
 import com.example.entity.UserEntity;
 import com.example.exception.CalculateException;
-import com.example.exception.FieldNotFoundException;
+import com.example.exception.ExistException;
 import com.example.exception.NotFoundException;
 import com.example.mapper.CartMapper;
 import com.example.repository.CartRepository;
@@ -48,8 +48,9 @@ public class CartService implements ICartService {
         //product
         Long productId = Long.valueOf(params.getOrDefault("productId", null).toString());
         ProductEntity productEntity = productRepository.findById(productId).get();
-
-        //cart
+        
+        if(cartRepository.findByProduct_IdAndUser_Id(productId,userId).isPresent()) throw new ExistException("Giỏ hàng của bạn đã có sản phẩm này");
+			//cart
         Integer quantity = Integer.valueOf(params.getOrDefault("quantity", null).toString());
         productEntity.setQuantity(productEntity.getQuantity() - quantity); //update quantity from current product
 

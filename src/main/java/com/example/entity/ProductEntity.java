@@ -28,9 +28,15 @@ public class ProductEntity extends BaseEntity {
 
     @Column(name = "discount")
     private Float discount;
+	
+	@Column(name = "author")
+	private String author;
 
     @Column(name = "price")
     private Float price;
+
+    @Column(name = "total_order")
+    private Integer totalOrder;
 
     @Column(name = "image")
     private String image;
@@ -47,4 +53,7 @@ public class ProductEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ImageEntity> images;
+	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	private List<ReceivedNoteDetailEntity> receivedNoteDetail;
 }

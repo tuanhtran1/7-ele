@@ -15,7 +15,7 @@ public class OrderDetailMapper {
 
     public OrderDetailDTO toDTO(OrderDetailEntity entity) {
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-        orderDetailDTO = modelMapper.map(entity,OrderDetailDTO.class);
+        orderDetailDTO = modelMapper.map(entity, OrderDetailDTO.class);
         return orderDetailDTO;
     }
 }

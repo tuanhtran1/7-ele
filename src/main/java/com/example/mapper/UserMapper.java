@@ -13,7 +13,7 @@ public class UserMapper {
     private ModelMapper modelMapper;
 
     public UserDTO toDTO(UserEntity entity) {
-        if(entity == null) return null;
+        if (entity == null) return null;
         return modelMapper.map(entity, UserDTO.class);
     }
 }
