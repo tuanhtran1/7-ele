@@ -2,6 +2,8 @@ package com.example.controller.admin;
 
 import com.example.service.ICategoryService;
 import com.example.service.IProductService;
+import com.example.service.IReceivedNoteService;
+import com.example.service.IWareHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,6 +19,12 @@ public class ProductController {
 
     @Autowired
     private ICategoryService categoryService;
+    
+    @Autowired
+	private IWareHouseService wareHouseService;
+    
+    @Autowired
+	private IReceivedNoteService receivedNoteService;
 
     @RequestMapping(value = "/admin/product-list", method = RequestMethod.GET)
     public ModelAndView getProducts() {

@@ -16,4 +16,6 @@ public class UserDTO {
     private String email;
 
     private RoleDTO role;
+    
+    private Integer status;
 }

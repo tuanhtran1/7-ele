@@ -1,15 +1,23 @@
 package com.example.service;
 
 import com.example.dto.ProductDTO;
+import com.example.dto.request.ProductFilterRequest;
 import com.example.dto.request.ProductRequest;
+import com.example.report.StatisticProduct;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;
 
 public interface IProductService {
     List<ProductDTO> findAll();
-
-    ProductDTO findById(Long id);
+	
+	Page<ProductDTO> findAll(ProductFilterRequest req, Pageable pageable);
+	
+	int totalItem();
+	
+	ProductDTO findById(Long id);
 
     ProductDTO insert(ProductRequest productRequest);
 
@@ -24,4 +32,7 @@ public interface IProductService {
     List<ProductDTO> getListOfDiscount();
 
     List<ProductDTO> getListNewAdd();
+    
+    //statistic
+	StatisticProduct getStatisticProduct();
 }

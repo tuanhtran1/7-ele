@@ -26,4 +26,6 @@ public class ProductDTO {
     private String image;
 
     private CategoryDTO category;
+    
+    private String author;
 }

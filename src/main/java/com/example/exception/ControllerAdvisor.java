@@ -57,6 +57,16 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         result.setData(null);
         return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+	
+	@ExceptionHandler(ExistException.class)
+	public ResponseEntity<ResponseDTO> handlerExistException(ExistException ex, WebRequest request) {
+		ResponseDTO result = new ResponseDTO();
+		List<String> errors = new ArrayList<>();
+		errors.add(ex.getMessage());
+		result.setErrors(errors);
+		result.setData(null);
+		return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
 
     @Override

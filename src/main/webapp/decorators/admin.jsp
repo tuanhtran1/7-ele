@@ -43,7 +43,21 @@
     <%--    jquery--%>
     <script src="/template/admin/assets/js/jquery.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .btnDelete, .btnEdit {
+            font-size: 15px;
+        }
 
+        .btnDelete {
+            color: red;
+        }
+
+        .btnEdit {
+            color: #1761fd;
+        }
+    </style>
 </head>
 <body class="">
 <!-- leftside-bar -->
@@ -65,6 +79,7 @@
 </div>
 
 <!-- jQuery  -->
+<script src="/template/admin/assets/js/jquery.min.js"></script>
 <script src="/template/admin/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/template/admin/assets/js/metismenu.min.js"></script>
 <script src="/template/admin/assets/js/waves.js"></script>
@@ -77,10 +92,10 @@
 <%--<script src="/admin/plugins/lightpick/lightpick.js"></script>--%>
 <%--<script src="/admin/assets/pages/jquery.profile.init.js"></script>--%>
 
-<%--<script src="/admin/plugins/apex-charts/apexcharts.min.js"></script>--%>
+<script src="/template/admin/plugins/apex-charts/apexcharts.min.js"></script>
 <script src="/template/admin/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
 <script src="/template/admin/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
-<%--<script src="/admin/assets/pages/jquery.analytics_dashboard.init.js"></script>--%>
+<script src="/template/admin/assets/pages/jquery.analytics_dashboard.init.js"></script>
 
 <%--<script src="/admin/assets/pages/jquery.leaflet-map.init.js"></script>--%>
 

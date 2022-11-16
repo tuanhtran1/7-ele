@@ -31,10 +31,15 @@
                     class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li class="nav-item"><a class="nav-link"
-                                            href="/template/admin/product-list"><i class="ti-control-record"></i>Products</a>
+                                            href="/admin/dashboard"><i class="ti-control-record"></i>Dashboard</a>
                     </li>
                     <li class="nav-item"><a class="nav-link"
-                                            href="/template/admin/order-list"><i class="ti-control-record"></i>Oders</a></li>
+                                            href="/admin/product-list"><i class="ti-control-record"></i>Products</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/order-list"><i class="ti-control-record"></i>Orders</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/received-note"><i class="ti-control-record"></i>Received note</a></li>
                 </ul>
             </li>
 

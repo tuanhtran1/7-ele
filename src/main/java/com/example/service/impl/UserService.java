@@ -1,17 +1,23 @@
 package com.example.service.impl;
 
 import com.example.dto.UserDTO;
+import com.example.dto.request.MailRequest;
 import com.example.dto.request.UserRequest;
 import com.example.entity.UserEntity;
 import com.example.exception.DuplicateException;
 import com.example.mapper.UserMapper;
+import com.example.report.StatisticUser;
 import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
 import com.example.service.IUserService;
+import com.example.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -19,6 +25,9 @@ public class UserService implements IUserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+	private MailService mailService;
 
     @Autowired
     private UserMapper userMapper;
@@ -48,9 +57,24 @@ public class UserService implements IUserService {
             user.setPassword(passwordEncoder.encode(req.getPassword()));
             user.setRole(roleRepository.findByCode(roleCode));
 
-            //active user
-            user.setStatus(1);
-
+            //status 0 wait active
+            user.setStatus(0);
+            
+            //mail
+			Map<String, Object> model = new HashMap<>();
+			MailRequest mailRequest = new MailRequest();
+			
+			mailRequest.setName("Pustok Store Admin");
+			mailRequest.setFrom("Admin");
+			mailRequest.setTo(req.getEmail());
+			mailRequest.setSubject("Welcome "+ req.getFullName());
+			
+			model.put("registerName", req.getFullName());
+			model.put("registerAccount", req.getEmail());
+			model.put("name", mailRequest.getName());
+			model.put("location", "Ho Chi Minh city, Viet Nam");
+			mailService.sendEmail(mailRequest,model);
+			
             if (req.getFullName() == null) {
                 user.setName(req.getEmail());
             } else user.setName(req.getFullName());
@@ -58,4 +82,17 @@ public class UserService implements IUserService {
             return userMapper.toDTO(userRepository.save(user));
         }
     }
+	
+	@Override
+	public UserDTO activateUser(String username) {
+		UserEntity user = userRepository.findByEmail(username);
+		user.setStatus(1);
+		userRepository.save(user);
+		return userMapper.toDTO(user);
+	}
+	
+	@Override
+	public StatisticUser getStatisticUser() {
+		return userRepository.getStatisticUser();
+	}
 }

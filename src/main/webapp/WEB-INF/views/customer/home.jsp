@@ -63,6 +63,7 @@ Home Slider Tab
                                 <div class="product-card">
                                     <div class="product-header">
                                         <a href="" class="author">
+                                            ${p.author}
                                         </a>
                                         <h3><a href="product-details.html">${p.name}</a></h3>
                                     </div>
@@ -70,7 +71,7 @@ Home Slider Tab
                                         <div class="card-image">
                                             <img src="/products/${p.image}" alt="">
                                             <div class="hover-contents">
-                                                <a href="product-details.html" class="hover-image">
+                                                <a href="/customer/product-detail/${p.id}" class="hover-image">
                                                     <img src="/products/${p.image}" alt="">
                                                 </a>
                                                 <div class="hover-btns">
@@ -86,9 +87,9 @@ Home Slider Tab
                                             </div>
                                         </div>
                                         <div class="price-block">
-                                            <span class="price">${p.salePrice}đ</span>
+                                            <span class="price">${p.salePrice.intValue()}đ</span>
                                             <c:if test="${p.discount > 0}">
-                                                <del class="price-old">${p.price}đ</del>
+                                                <del class="price-old">${p.price.intValue()}đ</del>
                                                 <span class="price-discount">${p.discount.intValue()}%</span>
                                             </c:if>
                                         </div>
@@ -752,6 +753,7 @@ Home Slider Tab
                                 <div class="product-card">
                                     <div class="product-header">
                                         <a href="" class="author">
+                                            ${p.author}
                                         </a>
                                         <h3><a href="product-details.html">${p.name}</a></h3>
                                     </div>
@@ -759,7 +761,7 @@ Home Slider Tab
                                         <div class="card-image">
                                             <img src="/products/${p.image}" alt="">
                                             <div class="hover-contents">
-                                                <a href="product-details.html" class="hover-image">
+                                                <a href="/customer/product-detail/${p.id}" class="hover-image">
                                                     <img src="/products/${p.image}" alt="">
                                                 </a>
                                                 <div class="hover-btns">
@@ -774,8 +776,8 @@ Home Slider Tab
                                             </div>
                                         </div>
                                         <div class="price-block">
-                                            <span class="price">${p.salePrice}đ</span>
-                                            <del class="price-old">${p.price}đ</del>
+                                            <span class="price">${p.salePrice.intValue()}đ</span>
+                                            <del class="price-old">${p.price.intValue()}đ</del>
                                             <span class="price-discount">${p.discount.intValue()}%</span>
                                         </div>
                                     </div>
@@ -839,8 +841,9 @@ Promotion Section Two
                             <div id="product-title-api">
                                 <%--api call here--%>
                             </div>
-                            <ul class="list-unstyled">
-                                <li>Loại: <a href="#" class="list-value font-weight-bold"> Chưa thêm loại</a></li>
+                            <ul id="category-api" class="list-unstyled">
+                                <li>Tác giả: <a href="#" class="list-value font-weight-bold"> Chưa thêm loại</a></li>
+                                <li>Thể loại: <a href="#" class="list-value font-weight-bold"> Chưa thêm loại</a></li>
                                 <%--api call here--%>
                                 <%--                                <li>Reward Points: <span class="list-value"> 200</span></li>&lt;%&ndash;api call here&ndash;%&gt;--%>
                                 <%--                                <li>Tình trạng: <span class="list-value"> In Stock</span></li>&lt;%&ndash;api call here&ndash;%&gt;--%>
@@ -869,8 +872,8 @@ Promotion Section Two
                                     <span class="widget-label">Số lượng</span>
                                     <input type="number" class="form-control text-center" value="1">
                                 </div>
-                                <div class="add-cart-btn">
-                                    <a href="" class="btn btn-outlined--primary"><span
+                                <div id="btnChoose" class="add-cart-btn">
+                                    <a type="button" class="btn btn-outlined--primary"><span
                                             class="plus-icon">+</span>Thêm vào giỏ</a>
                                 </div>
                             </div>
@@ -949,7 +952,7 @@ Promotion Section Two
                 $.each(response, function (index, item) {
                     totalPrice += item.totalMoney
                     result += '<div class="cart-product">'
-                    result += '<a href="product-details.html" class="image">'
+                    result += '<a href="/customer/product-detail/'+ item.product.id+'" class="image">'
                     result += '<img src="/products/' + item.product.image + '" alt="">'
                     result += '</a>'
 
@@ -969,13 +972,15 @@ Promotion Section Two
                     '<span class="text-item">Giỏ đồ</span>' +
                     '<span class="price">' + totalPrice + 'đ<i class="fas fa-chevron-down"></i></span>')
 
+                $('#blockCart').html(' <a href="/customer/cart/<security:authentication property="principal.id"/>" class="btn">View Cart <i class="fas fa-chevron-right"></i></a> <a href="/customer/checkout/<security:authentication property="principal.id"/>" class="btn btn--primary">Check Out <i class="fas fa-chevron-right"></i></a>')
+
             },
             error: function (response) {
                 $('#cart-dropdown-block #carts-detail').html('<span style="display: block; text-align: center; margin-bottom: 20px" class="price">Giỏ đồ đang trống</span>')
                 $('#cart-info').html('<span class="text-number">' + 0 + '</span>' +
                     '<span class="text-item">Giỏ đồ</span>' +
                     '<span class="price">' + 0 + 'đ<i class="fas fa-chevron-down"></i></span>')
-
+                $('#blockCart').html('')
             }
         });
     }
@@ -1000,6 +1005,9 @@ Promotion Section Two
                     '<del class="price-old">' + response.price + '</del>')
                 $('#product-description-api').html('<p>' + response.description + '</p>')
                 $('#productId').val(id);
+                $('#category-api').html('<li>Tác giả: <a href="#" class="list-value font-weight-bold">'+response.author+'</a></li>' +
+                    '<li>Thể loại: <a href="#" class="list-value font-weight-bold">'+response.category.value+'</a></li>')
+                $('#btnChoose').html('<a onclick="addToCart('+ response.id +',1)" type="button" class="btn btn-outlined--primary"><span class="plus-icon">+</span>Thêm vào giỏ</a>')
             },
             error: function (response) {
                 console.log(response.errors);
@@ -1009,10 +1017,9 @@ Promotion Section Two
 
     function addToCart(productId, value) {
         <security:authorize access="isAuthenticated() == false">
-
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn có chưa đăng nhập để thêm giỏ hàng !",
+            text: "Bạn chưa đăng nhập để thêm giỏ hàng !",
             icon: 'error',
             showCancelButton: true,
             cancelButtonText: 'Để sau!',

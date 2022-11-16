@@ -49,13 +49,13 @@
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Author</th>
                         <th>Category</th>
                         <th>Price</th>
                         <th>Discount</th>
                         <th>Sale Price</th>
                         <th>Quantity</th>
                         <th>Decription</th>
-                        <th>Avai.Color</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -70,6 +70,7 @@
                                     <br> <span class="text-muted font-13">size-08
 														(Model 2020)</span>
                                 </p></td>
+                            <td>${p.author}</td>
                             <td>${p.category.value}</td>
                             <td>${p.price}</td>
                             <td>${p.discount}</td>
@@ -77,20 +78,8 @@
                             <td>${p.quantity}</td>
                             <td>${p.description}</td>
                             <td>
-                                <ul class="list-inline mb-0">
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-success"></i></li>
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-pink"></i></li>
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-info"></i></li>
-                                    <li class="list-inline-item align-middle"><i
-                                            class="fas fa-circle text-warning"></i></li>
-                                </ul>
-                            </td>
-                            <td>
-                                <button type="button" data-toggle="tooltip" class="btnEdit"
-                                        onclick="editProduct(${p.id})"><i class="las la-pen text-secondary font-16"></i>
+                                <button type="button" data-toggle="tooltip" class="btnEdit btn btn-sm btn-outline-primary"
+                                        onclick="editProduct(${p.id})"><i style="color: white" class="las la-pen text-secondary font-16"></i>
                                 </button>
                                 <!-- The Modal -->
                                 <div class="modal fade" id="editProductModal${p.id}">
@@ -116,6 +105,16 @@
                                                                    value="${p.name}"/>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group row">
+                                                        <label
+                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Author:</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input name="author" class="form-control" type="text"
+                                                                   value="${p.author}"/>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group row">
                                                         <label
                                                                 class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Category:</label>
@@ -149,14 +148,6 @@
 
                                                     <div class="form-group row">
                                                         <label
-                                                                class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Quantity:</label>
-                                                        <div class="col-lg-9 col-xl-8">
-                                                            <input name="quantity" class="form-control" type="text"
-                                                                   value="${p.quantity}"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label
                                                                 class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Description:</label>
                                                         <div class="col-lg-9 col-xl-8">
                                                             <input name="description" class="form-control" type="text"
@@ -186,8 +177,8 @@
                                     </div>
                                 </div>
 
-                                <button type="button" onclick="deleteProduct(${p.id})" class="btnDelete"><i
-                                        class="las la-trash-alt text-secondary font-16"></i></button>
+                                <button type="button" onclick="deleteProduct(${p.id})" class="btnDelete btn btn-sm btn-outline-danger"><i
+                                        class="las la-trash-alt text-secondary font-16 "></i></button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -234,6 +225,15 @@
                         <input id="name" name="name" class="form-control" type="text"/>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label
+                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Author:</label>
+                    <div class="col-lg-9 col-xl-8">
+                        <input id="author" name="author" class="form-control" type="text"/>
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <label
                             class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Category:</label>
@@ -262,13 +262,6 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label
-                            class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Quantity:</label>
-                    <div class="col-lg-9 col-xl-8">
-                        <input id="quantity" name="quantity" class="form-control" type="text"/>
-                    </div>
-                </div>
                 <div class="form-group row">
                     <label
                             class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Description:</label>
@@ -301,12 +294,12 @@
         <!--end card-body-->
     </div>
     <!--end card-->
-
 </div>
 
 <script src="/template/admin/assets/js/jquery.min.js"></script>
 
 <script type="text/javascript">
+
 
     $('#btnAdd').click(function (e) {
         e.preventDefault();
@@ -332,11 +325,21 @@
             data: formData,
             enctype: 'multipart/form-data',
             success: function (result) {
-                swal("Notification!", "Add Product Success!", "success");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thêm thành công',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
                 setTimeout(() => window.location.href = "/admin/product-list", 2000);
             },
             error: function (error) {
-                swal("Ops! Please try again!");
+                Swal.fire({
+                    icon: 'danger',
+                    title: 'Thêm thất bại',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
             }
         });
     });
@@ -382,34 +385,66 @@
             dataType: "json",
             contentType: "application/json",
             success: function () {
-                swal("Notification!", "Update Product Success!", "success");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cập nhật thành công',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
                 setTimeout(() => window.location.href = "/admin/product-list", 3000);
                 console.log('success')
             },
             error: function () {
-                swal("Ops! Please try again!");
-
+                Swal.fire({
+                    icon: 'danger',
+                    title: 'Đã xảy ra lỗi vui lòng thử lại',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })
             }
         });
         console.log(data)
     }
 
     function deleteProduct(id) {
-        $.ajax({
-            url: '/api/product?id=' + id,
-            type: 'DELETE',
-            contentType: 'application/json',
-            dataType: 'json',
-            success: function (result) {
-                swal("Notification!", "Add Product Success!", "success");
-                setTimeout(() => window.location.href = "/admin/product-list", 2000);
+        Swal.fire({
+            title: 'Thông báo',
+            text: "Xác nhận đơn hàng",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '##1761fd',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý!',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/api/product?id=' + id,
+                    type: 'DELETE',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (result) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Xoá sản phẩm thành công',
+                            showConfirmButton: false,
+                            timer: 2000,
+                        })
+                        setTimeout(() => window.location.href = "/admin/product-list", 2000);
 
-            },
-            error: function (error) {
-                swal("Notification!", "Add Product Success!", "success");
-                setTimeout(() => window.location.href = "/admin/product-list", 2000);
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Xoá sản phẩm thành công',
+                            showConfirmButton: false,
+                            timer: 2000,
+                        })
+                        setTimeout(() => window.location.href = "/admin/product-list", 2000);
+                    }
+                });
             }
-        });
+        })
     }
 
 </script>

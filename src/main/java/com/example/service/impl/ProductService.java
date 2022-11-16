@@ -2,14 +2,18 @@ package com.example.service.impl;
 
 import com.example.constant.SystemConstant;
 import com.example.dto.ProductDTO;
+import com.example.dto.request.ProductFilterRequest;
 import com.example.dto.request.ProductRequest;
 import com.example.entity.ProductEntity;
 import com.example.exception.NotFoundException;
 import com.example.mapper.ProductMapper;
+import com.example.report.StatisticProduct;
 import com.example.repository.CategoryRepository;
 import com.example.repository.ProductRepository;
 import com.example.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,8 +52,19 @@ public class ProductService implements IProductService {
         }
         return productDTOs;
     }
-
-    @Override
+	
+	@Override
+	public Page<ProductDTO> findAll(ProductFilterRequest req, Pageable pageable) {
+		Page<ProductEntity> entities = productRepository.findAllFilter(req, pageable);
+		return entities.map(productMapper::toDTO);
+	}
+	
+	@Override
+	public int totalItem() {
+		return (int) productRepository.count();
+	}
+	
+	@Override
     public ProductDTO findById(Long id) {
         Optional<ProductEntity> productOtp = productRepository.findById(id);
         if(!productOtp.isPresent()) {
@@ -75,6 +90,9 @@ public class ProductService implements IProductService {
         }
         productEntity.setSalePrice((productRequest.getDiscount() == 0)? productEntity.getPrice():productEntity.getPrice() - (productEntity.getPrice()*(productRequest.getDiscount()/100)));
         productEntity.setImage(fileName);
+        productEntity.setQuantity(0);
+        productEntity.setTotalOrder(0);
+        productEntity.setAuthor(productRequest.getAuthor());
         return productMapper.toDTO(productRepository.save(productEntity));
     }
 
@@ -89,8 +107,7 @@ public class ProductService implements IProductService {
         productEntity.setPrice(productRequest.getPrice());
         productEntity.setDiscount(productRequest.getDiscount());
         productEntity.setSalePrice((productRequest.getDiscount() == 0)? productEntity.getPrice():productEntity.getPrice() - (productEntity.getPrice()*(productRequest.getDiscount()/100)));
-        productEntity.setQuantity(productRequest.getQuantity());
-
+		productEntity.setAuthor(productRequest.getAuthor());
         return productMapper.toDTO(productRepository.save(productEntity));
     }
 
@@ -124,4 +141,9 @@ public class ProductService implements IProductService {
                 .map(item -> productMapper.toDTO(item))
                 .collect(Collectors.toList());
     }
+	
+	@Override
+	public StatisticProduct getStatisticProduct() {
+		return productRepository.getStatisticProduct();
+	}
 }

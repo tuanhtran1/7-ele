@@ -28,6 +28,13 @@
         font-size: 14px !important;
         font-family: Georgia, serif;
     }
+    .btnPaypal{
+        background-color: #035da6;
+    }
+    .btnPaypal:hover{
+        background-color: #b85e5d;
+        color: white;
+    }
 </style>
 <body>
 <div class="site-wrapper" id="top">
@@ -51,7 +58,18 @@
 <script src="/template/customer/js/ajax-mail.js"></script>
 <script src="/template/customer/js/custom.js"></script>
 
+<script type="text/javascript">
 
-
+    function search(){
+        console.log($('#searchProduct').val())
+        window.location.href = "/customer/products"
+        localStorage.removeItem('categoryCode')
+        localStorage.setItem('keyword',$('#searchProduct').val())
+    }
+    function category(code){
+        window.location.href = "/customer/products"
+        localStorage.setItem('categoryCode',code)
+    }
+</script>
 </body>
 </html>

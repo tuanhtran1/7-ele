@@ -15,12 +15,12 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 public class UserRequest {
 
-    @Pattern(regexp = SystemConstant.EMAIL_REGEX, message = "Please provide a valid email")
-    @NotNull(message = "Email is required")
+    @Pattern(regexp = SystemConstant.EMAIL_REGEX, message = "Email không đúng định dạng")
+    @NotNull(message = "Email phải được nhập")
     private String email;
 
-    @NotEmpty(message = "Password is not empty")
-    @NotNull(message = "Password is required")
+    @NotEmpty(message = "Mật khẩu không được trống")
+    @NotNull(message = "Mật khẩu phải được nhập")
     private String password;
 
     @JsonProperty("fullname")

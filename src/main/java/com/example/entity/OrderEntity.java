@@ -1,6 +1,7 @@
 package com.example.entity;
 
 
+import com.example.enums.PaymentType;
 import com.example.enums.StatusOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,19 @@ public class OrderEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusOrder status;
+    
+    @Column(name="payment_id")
+	private String paymentId;
+    
+    @Column(name="payer_id")
+	private String payerId;
+    
+    @Column(name = "token_payment")
+	private String tokenPayment;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "payment_type")
+	private PaymentType paymentType;
 
     @OneToMany(mappedBy = "orderProduct", cascade = CascadeType.ALL)
     private List<OrderDetailEntity> orderDetails = new ArrayList<>();
@@ -33,5 +47,5 @@ public class OrderEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "userid")
     private UserEntity user;
-
+    
 }

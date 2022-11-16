@@ -18,8 +18,8 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="header-search-block">
-                        <input type="text" placeholder="Bạn muốn tìm kiếm gì ?">
-                        <button>Tìm kiếm</button>
+                        <input id="searchProduct" type="text" placeholder="Bạn muốn tìm kiếm gì ?">
+                        <button onclick="search()">Tìm kiếm</button>
                     </div>
                 </div>
 
@@ -30,13 +30,13 @@
                             <security:authorize access="isAuthenticated() == false ">
                                 <div class="login-block">
                                     <a href="/customer/login" class="font-weight-bold">Đăng nhập</a> <br>
-                                    <span>hoặc</span><a href="login-register.html">Đăng kí</a>
+                                    <span>hoặc</span><a href="/customer/register">Đăng kí</a>
                                 </div>
                             </security:authorize>
 
                             <security:authorize access="isAuthenticated()">
                                 <div class="login-block">
-                                    <span>Xin chào: <security:authentication property="principal.fullName"/></span>
+                                    <span>Xin chào: <a href="/customer/account"><security:authentication property="principal.fullName"/></a></span>
                                     <a href="/logout" class="font-weight-bold">Đăng xuất</a> <br>
                                 </div>
                                 <div class="cart-block">
@@ -48,11 +48,11 @@
 <%--                                            callapi--%>
                                         </div>
                                         <div class=" single-cart-block ">
-                                            <div class="btn-block">
-                                                <a href="/customer/cart/<security:authentication property="principal.id"/>" class="btn">View Cart <i
-                                                        class="fas fa-chevron-right"></i></a>
-                                                <a href="checkout.html" class="btn btn--primary">Check Out <i
-                                                        class="fas fa-chevron-right"></i></a>
+                                            <div id="blockCart" class="btn-block">
+<%--                                                <a href="/customer/cart/<security:authentication property="principal.id"/>" class="btn">View Cart <i--%>
+<%--                                                        class="fas fa-chevron-right"></i></a>--%>
+<%--                                                <a href="/customer/checkout/<security:authentication property="principal.id"/>" class="btn btn--primary">Check Out <i--%>
+<%--                                                        class="fas fa-chevron-right"></i></a>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                             <ul class="category-menu">
                                 <c:forEach var="item" items="${categories}" begin="0" end="7">
                                     <li class="cat-item">
-                                        <a href="#">${item.value}</a>
+                                        <a type="button" onclick="category('${item.code}')">${item.value}</a>
                                     </li>
                                 </c:forEach>
                                 <li class="cat-item"><a href="#" class="js-expand-hidden-menu">More
@@ -105,7 +105,7 @@
                             </li>
                             <!-- Shop -->
                             <li class="menu-item has-children mega-menu">
-                                <a href="javascript:void(0)">shop <i
+                                <a href="/customer/products">shop <i
                                         class="fas fa-chevron-down dropdown-arrow"></i></a>
                                 <ul class="sub-menu four-column">
                                     <li class="cus-col-25">

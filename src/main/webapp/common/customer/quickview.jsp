@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@include file="/common/taglib.jsp" %>
 <section class="hero-area hero-slider-2">
     <div class="container">
         <div class="row align-items-lg-center">
@@ -61,132 +61,28 @@
                                             {"breakpoint":768, "settings": {"slidesToShow": 1} },
                                          {"breakpoint":490, "settings": {"slidesToShow": 1} }
                                     ]'>
-                    <div class="single-slide">
-                        <div class="product-card card-style-list">
-                            <div class="card-image">
-                                <img src="/template/customer/image/products/product-1.jpg" alt="">
-                            </div>
-                            <div class="product-card--body">
-                                <div class="product-header">
-                                    <a href="" class="author">
-                                        Gpple
-                                    </a>
-                                    <h3><a href="product-details.html">Apple iPad with Retina Display
-                                        MD510LL/A</a></h3>
+                    <c:forEach items="${productsOfDiscount}" var="p" >
+                        <div class="single-slide">
+                            <div class="product-card card-style-list">
+                                <div class="card-image">
+                                    <img src="/products/${p.image}" alt="">
                                 </div>
-                                <div class="price-block">
-                                    <span class="price">£51.20</span>
-                                    <del class="price-old">£51.20</del>
-                                    <span class="price-discount">20%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-slide">
-                        <div class="product-card card-style-list">
-                            <div class="card-image">
-                                <img src="/template/customer/image/products/product-2.jpg" alt="">
-                            </div>
-                            <div class="product-card--body">
-                                <div class="product-header">
-                                    <a href="" class="author">
-                                        Hpple
-                                    </a>
-                                    <h3><a href="product-details.html">Do You Really Need It? This Will Help
-                                        You</a></h3>
-                                </div>
-                                <div class="price-block">
-                                    <span class="price">£51.20</span>
-                                    <del class="price-old">£51.20</del>
-                                    <span class="price-discount">20%</span>
+                                <div class="product-card--body">
+                                    <div class="product-header">
+                                        <a href="" class="author">
+                                            ${p.author}
+                                        </a>
+                                        <h3><a href="/customer/product-detail/${p.id}">${p.name}</a></h3>
+                                    </div>
+                                    <div class="price-block">
+                                        <span class="price">${p.price}</span>
+                                        <del class="price-old">${p.salePrice}</del>
+                                        <span class="price-discount">${p.discount.intValue()}%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="single-slide">
-                        <div class="product-card card-style-list">
-                            <div class="card-image">
-                                <img src="/template/customer/image/products/product-3.jpg" alt="">
-                            </div>
-                            <div class="product-card--body">
-                                <div class="product-header">
-                                    <a href="" class="author">
-                                        Fpple
-                                    </a>
-                                    <h3><a href="product-details.html">Here Is A Quick Cure For BOOK This Will
-                                        Help</a></h3>
-                                </div>
-                                <div class="price-block">
-                                    <span class="price">£51.20</span>
-                                    <del class="price-old">£51.20</del>
-                                    <span class="price-discount">20%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-slide">
-                        <div class="product-card card-style-list">
-                            <div class="card-image">
-                                <img src="/template/customer/image/products/product-4.jpg" alt="">
-                            </div>
-                            <div class="product-card--body">
-                                <div class="product-header">
-                                    <a href="" class="author">
-                                        Epple
-                                    </a>
-                                    <h3><a href="product-details.html">7 and a Half Very Simple Things You Can
-                                        Do</a></h3>
-                                </div>
-                                <div class="price-block">
-                                    <span class="price">£51.20</span>
-                                    <del class="price-old">£51.20</del>
-                                    <span class="price-discount">20%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-slide">
-                        <div class="product-card card-style-list">
-                            <div class="card-image">
-                                <img src="/template/customer/image/products/product-5.jpg" alt="">
-                            </div>
-                            <div class="product-card--body">
-                                <div class="product-header">
-                                    <a href="" class="author">
-                                        Ypple
-                                    </a>
-                                    <h3><a href="product-details.html">BOOK: Do You Really Need It? This Will
-                                        Help You</a></h3>
-                                </div>
-                                <div class="price-block">
-                                    <span class="price">£51.20</span>
-                                    <del class="price-old">£51.20</del>
-                                    <span class="price-discount">20%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-slide">
-                        <div class="product-card card-style-list">
-                            <div class="card-image">
-                                <img src="/template/customer/image/products/product-7.jpg" alt="">
-                            </div>
-                            <div class="product-card--body">
-                                <div class="product-header">
-                                    <a href="" class="author">
-                                        Wpple
-                                    </a>
-                                    <h3><a href="product-details.html">Here Is A Quick Cure For BOOK This Will
-                                        Help</a></h3>
-                                </div>
-                                <div class="price-block">
-                                    <span class="price">£51.20</span>
-                                    <del class="price-old">£51.20</del>
-                                    <span class="price-discount">20%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>

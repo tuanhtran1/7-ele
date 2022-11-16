@@ -101,7 +101,7 @@
                     result += '<td class="pro-remove"><a type="button" onclick="deleteCart(' + item.id + ')"><i class="far fa-trash-alt"></i></a></td>'
                     result += '<td class="pro-thumbnail"><a href="#"><img src="/products/' + item.product.image + '" alt="Product"></a></td>'
                     result += '<td class="pro-title"><a href="#">' + item.product.name + '</a></td>'
-                    result += '<td class="pro-price"><span>' + item.product.salePrice + '</span></td>'
+                    result += '<td class="pro-price"><span>' + item.product.salePrice + 'đ</span></td>'
 
                     result += '<td class="pro-quantity">'
                     result += '<div class="pro-qty">'
@@ -113,7 +113,7 @@
                     result += '</div>'
                     result += '</td>'
 
-                    result += '<td class="pro-subtotal"><span>' + item.totalMoney + '</span></td>'
+                    result += '<td class="pro-subtotal"><span>' + item.totalMoney + 'đ</span></td>'
 
                     result += ' </tr>'
                 })
@@ -133,12 +133,12 @@
                     '<div class="cart-summary">' +
                     '<div class="cart-summary-wrap">' +
                     '<h4><span>Cart Summary</span></h4>' +
-                    '<p>Tổng<span class="text-primary">' + totalPrice + '</span></p>' +
+                    '<p>Tổng<span class="text-primary">' + totalPrice + 'đ</span></p>' +
                     '<p>Phí giao hàng <span class="text-primary">0đ</span></p> ' +
-                    '<h2>Tổng số tiền<span class="text-primary">' + totalPrice + '</span></h2>' +
+                    '<h2>Tổng số tiền<span class="text-primary">' + totalPrice + 'đ</span></h2>' +
                     '</div>' +
                     '<div class="cart-summary-button"> ' +
-                    '<a style="width: 150px;" href="checkout.html" class="checkout-btn c-btn btn--primary">Thanh toán</a> ' +
+                    '<a style="width: 150px;" href="/customer/checkout/'+ <security:authentication property="principal.id"/> +'" class="checkout-btn c-btn btn--primary">Thanh toán</a> ' +
                     '<button class="update-btn c-btn btn-outlined">Cập nhật giỏ</button> </div> </div> </div> </div> </td> </tr>'
                 $('#table-carts').html(result)
 
@@ -203,7 +203,56 @@
         });
     }
 
+    // api cart
+    callAPIcart(<security:authentication property="principal.id"/>)
+
+    function callAPIcart(id) {
+        $.ajax({
+            url: "/api/carts?userId=" + id,
+            type: 'GET',
+            dataType: "json",
+            contentType: 'application/json',
+            success: function (response) {
+                var totalPrice = 0, mount = response.length
+                var result = '';
+                $.each(response, function (index, item) {
+                    totalPrice += item.totalMoney
+                    result += '<div class="cart-product">'
+                    result += '<a href="product-details.html" class="image">'
+                    result += '<img src="/products/' + item.product.image + '" alt="">'
+                    result += '</a>'
+
+                    result += '<div class="content">'
+                    result += '<h3 class="title">'
+                    result += '<a href="product-details.html">' + item.product.name + '</a>'
+                    result += '</h3>'
+                    result += '<div class="price">Total: ' + item.quantity + ' x ' + item.product.salePrice + 'đ</div>'
+                    result += '<button class="cross-btn" onclick="deleteCart(' + item.id + ')"><i class="fas fa-times"></i></button>'
+                    result += '</div>'
+
+                    result += ' </div>'
+
+                })
+                $('#carts-detail').html(result)
+                $('#cart-info').html('<span class="text-number">' + response.length + '</span>' +
+                    '<span class="text-item">Giỏ đồ</span>' +
+                    '<span class="price">' + totalPrice + 'đ<i class="fas fa-chevron-down"></i></span>')
+
+            },
+            error: function (response) {
+                $('#cart-dropdown-block #carts-detail').html('<span style="display: block; text-align: center; margin-bottom: 20px" class="price">Giỏ đồ đang trống</span>')
+                $('#cart-info').html('<span class="text-number">' + 0 + '</span>' +
+                    '<span class="text-item">Giỏ đồ</span>' +
+                    '<span class="price">' + 0 + 'đ<i class="fas fa-chevron-down"></i></span>')
+
+            }
+        });
+    }
+
+
     </security:authorize>
+
+
 </script>
 </body>
 </html>

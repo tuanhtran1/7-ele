@@ -24,4 +24,6 @@ public class ProductRequest {
     private String categoryCode; //Code
 
     private MultipartFile fileImg;
+    
+    private String author;
 }
