@@ -13,6 +13,7 @@ import com.example.repository.CartRepository;
 import com.example.repository.ProductRepository;
 import com.example.repository.UserRepository;
 import com.example.service.ICartService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,21 +25,18 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class CartService implements ICartService {
-
-    @Autowired
-    private CartRepository cartRepository;
-
-    @Autowired
-    private CartMapper cartMapper;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Override
+	
+    private final CartRepository cartRepository;
+	
+    private final CartMapper cartMapper;
+	
+    private final UserRepository userRepository;
+	
+    private final ProductRepository productRepository;
+	
+	@Override
     public CartDTO insertCart(Map<String, Object> params) {
         CartEntity cartEntity = new CartEntity();
         //user
