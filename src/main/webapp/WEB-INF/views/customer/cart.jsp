@@ -139,9 +139,9 @@
                     '</div>' +
                     '<div class="cart-summary-button"> ' +
                     '<a style="width: 150px;" href="/customer/checkout/'+ <security:authentication property="principal.id"/> +'" class="checkout-btn c-btn btn--primary">Thanh toán</a> ' +
-                    '<button class="update-btn c-btn btn-outlined">Cập nhật giỏ</button> </div> </div> </div> </div> </td> </tr>'
+                    '</div> </div> </div> </div> </td> </tr>'
                 $('#table-carts').html(result)
-
+                // <button class="update-btn c-btn btn-outlined">Cập nhật giỏ</button>
             },
             error: function (response) {
 
