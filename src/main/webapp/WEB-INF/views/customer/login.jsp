@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: tuanhtran1
@@ -6,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Login</title>
@@ -16,6 +17,9 @@
     <div class="container">
         <div class="login-form">
             <h4 class="login-title">Returning Customer</h4>
+            <c:if test="${incorrectAccount == 'true'}">
+                <h4 class="login-title">Thong tin dang nhap khong chinh xac</h4>
+            </c:if>
             <p><span class="font-weight-bold">I am a returning customer</span></p>
             <div class="row">
                 <div class="col-md-12 col-12 mb--15">
@@ -42,7 +46,8 @@
 </form>
 
 <script type="text/javascript">
-
+    console.log('incorrectAccount : ${incorrectAccount}')
+    console.log('disable : ${disable}')
     function login() {
         $('#formSubmit').submit()
     }
