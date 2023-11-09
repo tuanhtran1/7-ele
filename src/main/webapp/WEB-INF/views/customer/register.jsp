@@ -48,23 +48,23 @@
                 </form>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-                <form action="./">
+                <form action="/j_spring_security_check" id="formSubmit" method="post">
                     <div class="login-form">
                         <h4 class="login-title">Đăng nhập</h4>
                         <p><span class="font-weight-bold">I am a returning customer</span></p>
                         <div class="row">
                             <div class="col-md-12 col-12 mb--15">
-                                <label for="email">Email</label>
-                                <input class="mb-0 form-control" type="email" id="email1"
+                                <label >Enter your email address here...</label>
+                                <input class="mb-0 form-control" name="email" type="email" id="email1"
                                        placeholder="Enter you email address here...">
                             </div>
                             <div class="col-12 mb--20">
-                                <label for="password">Mật khẩu</label>
-                                <input class="mb-0 form-control" type="password" id="login-password"
+                                <label>Password</label>
+                                <input class="mb-0 form-control" name="password" type="password" id="login-password"
                                        placeholder="Enter your password">
                             </div>
                             <div class="col-md-12">
-                                <a href="#" class="btn btn-outlined">Đăng nhập</a>
+                                <button type="button" onclick="login()" class="btn btn-outlined">Login</button>
                             </div>
                         </div>
                     </div>
@@ -127,6 +127,11 @@
                 }
             });
         }
+    }
+
+    function login() {
+        $('#formSubmit').submit()
+        console.log("Da nhan nut submit")
     }
 
 </script>
