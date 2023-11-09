@@ -86,6 +86,39 @@
         $.each($('#formRegister').find("input"), function (i, v) {
             data["" + v.name + ""] = v.value
         });
+        console.log(data)
+        if(data["fullname"] === ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Ten khong duoc de trong !',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        if(data["email"]  === ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Email khong duoc de trong !',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        if(data["password"]  === ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Mat khau khong duoc de trong !',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        if(data["repeat-password"]  === ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Nhap lai mat khau khong duoc de trong !',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
         if (validateEmail(data["email"]) == false) {
             Swal.fire({
                 icon: 'error',
