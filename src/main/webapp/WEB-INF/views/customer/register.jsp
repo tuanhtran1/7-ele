@@ -5,6 +5,7 @@
   Time: 5:47 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -86,20 +87,59 @@
         $.each($('#formRegister').find("input"), function (i, v) {
             data["" + v.name + ""] = v.value
         });
+
+        if (data["fullname"] === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_REGISTER_EMPTY_NAME}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (data["email"]  === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_REGISTER_EMPTY_EMAIL}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (data["password"]  === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_REGISTER_EMPTY_PASSWORD}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        } if(data["repeat-password"]  === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_REGISTER_EMPTY_REPEATED_PASSWORD}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+
         if (validateEmail(data["email"]) == false) {
             Swal.fire({
                 icon: 'error',
-                title: 'Email không đúng định dạng !',
+                title: '${Message.ERROR_WRONG_EMAIL_FORMAT}',
                 showConfirmButton: false,
                 timer: 1500
             })
+            return;
         } else if (data["password"] != data["repeat-password"]) {
             Swal.fire({
                 icon: 'error',
-                title: 'Mật khẩu không trùng nhau !',
+                title: '${Message.ERROR_REGISTER_NO_MATCH_PASSWORD}',
                 showConfirmButton: false,
                 timer: 1500
             })
+            return;
         } else {
             delete data["repeat-password"]
             $.ajax({
@@ -111,25 +151,61 @@
                 success: function (response) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Đăng kí thành công vui lòng check mail!',
+                        title: '${Message.MESSAGE_REGISTER_SUCCEED}',
                         showConfirmButton: true,
                         timer: 3000
                     })
+                    return;
                 },
                 error: function (response) {
                     console.log(response)
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Không thể đăng kí vì tài khoản đã bị trùng !',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    if (response.responseJSON.errors[0] == '${Message.ERROR_DUPLICATE_EMAIL}') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '${Message.ERROR_DUPLICATE_EMAIL}',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        return;
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '${Message.NT_REGISTER_FAILED}',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        return;
+                    }
                 }
             });
         }
     }
 
     function login() {
+        var data = {}
+        $.each($('#formSubmit').find("input"), function (i, v) {
+            data["" + v.name + ""] = v.value
+        });
+
+        if (data["email"] === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_LOGIN_EMPTY_EMAIL}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (data["password"] === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_LOGIN_EMPTY_PASSWORD}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+
         $('#formSubmit').submit()
         console.log("Da nhan nut submit")
     }

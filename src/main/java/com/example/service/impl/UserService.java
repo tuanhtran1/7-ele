@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.constant.Message;
 import com.example.dto.UserDTO;
 import com.example.dto.request.MailRequest;
 import com.example.dto.request.UserRequest;
@@ -50,7 +51,7 @@ public class UserService implements IUserService {
     @Override
     public UserDTO createUser(UserRequest req, String roleCode) {
         Optional<UserEntity> userEntityOtp = Optional.ofNullable(userRepository.findByEmailAndStatus(req.getEmail(), 1));
-        if (userEntityOtp.isPresent()) throw new DuplicateException("Email already exists");
+        if (userEntityOtp.isPresent()) throw new DuplicateException(Message.ERROR_DUPLICATE_EMAIL);
         else {
             UserEntity user = new UserEntity();
             user.setEmail(req.getEmail());
