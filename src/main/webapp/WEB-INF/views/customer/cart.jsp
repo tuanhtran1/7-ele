@@ -5,6 +5,7 @@
   Time: 12:24
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
@@ -119,15 +120,6 @@
                 })
                 result += '<tr>' +
                     '<td colspan="6" class="actions">' +
-                    '<div class="coupon-block"> ' +
-                    '<div class="coupon-text"> ' +
-                    '<label for="coupon_code">Mã giảm giá:</label> ' +
-                    '<input type="text" name="coupon" class="input-text" id="coupon_code" value="" placeholder="Nhập mã giảm giá">' +
-                    '</div>' +
-                    '<div class="coupon-btn">' +
-                    '<input type="submit" class="btn btn-outlined" name="coupon" placeholder="Áp dụng">' +
-                    '</div>' +
-                    '</div>' +
                     '<div style="justify-content: flex-end;" class="row">' +
                     '<div class="col-lg-6 col-12 right">' +
                     '<div class="cart-summary">' +
@@ -138,7 +130,7 @@
                     '<h2>Tổng số tiền<span class="text-primary">' + totalPrice + 'đ</span></h2>' +
                     '</div>' +
                     '<div class="cart-summary-button"> ' +
-                    '<a style="width: 150px;" href="/customer/checkout/'+ <security:authentication property="principal.id"/> +'" class="checkout-btn c-btn btn--primary">Thanh toán</a> ' +
+                    '<a style="width: 200px;" href="/customer/checkout/'+ <security:authentication property="principal.id"/> +'" class="checkout-btn c-btn btn--primary">Thanh toán</a> ' +
                     '</div> </div> </div> </div> </td> </tr>'
                 $('#table-carts').html(result)
                 // <button class="update-btn c-btn btn-outlined">Cập nhật giỏ</button>
@@ -152,7 +144,7 @@
     function deleteCart(id) {
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn có muốn xoá sản phẩm này không ?",
+            text: '${Message.MESSAGE_CART_DELETE_CONFIRM}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#61ab02',
@@ -168,7 +160,7 @@
                     success: function (result) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Xoá thành công sản phẩm khỏi giỏ hàng',
+                            title: '${Message.MESSAGE_CART_DELETE_SUCCEED}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -177,7 +169,7 @@
                     error: function (error) {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Xoá bị lỗi! Vui lòng kiểm tra lại',
+                            title: '${Message.ERROR_CART_DELETE_FAILED}',
                             showConfirmButton: false,
                             timer: 1500
                         })

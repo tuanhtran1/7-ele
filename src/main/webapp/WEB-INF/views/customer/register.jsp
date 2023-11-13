@@ -127,7 +127,7 @@
         if (validateEmail(data["email"]) == false) {
             Swal.fire({
                 icon: 'error',
-                title: '${Message.ERROR_WRONG_EMAIL_FORMAT}',
+                title: '${Message.ERROR_REGISTER_WRONG_EMAIL_FORMAT}',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -170,7 +170,7 @@
                     } else {
                         Swal.fire({
                             icon: 'error',
-                            title: '${Message.NT_REGISTER_FAILED}',
+                            title: '${Message.MESSAGE_REGISTER_FAILED}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -200,6 +200,16 @@
             Swal.fire({
                 icon: 'error',
                 title: '${Message.ERROR_LOGIN_EMPTY_PASSWORD}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+
+        if (validateEmail(data["email"]) == false) {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_LOGIN_WRONG_EMAIL_FORMAT}',
                 showConfirmButton: false,
                 timer: 1500
             })

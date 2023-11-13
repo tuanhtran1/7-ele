@@ -29,16 +29,9 @@ Home Slider Tab
                     <span class="arrow-icon"></span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="men-tab" data-toggle="tab" href="#men" role="tab"
-                       aria-controls="men" aria-selected="true">
-                        Ưu đãi
-                    </a>
-                    <span class="arrow-icon"></span>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" id="woman-tab" data-toggle="tab" href="#woman" role="tab"
                        aria-controls="woman" aria-selected="false">
-                        Hot
+                        Sale
                     </a>
                     <span class="arrow-icon"></span>
                 </li>

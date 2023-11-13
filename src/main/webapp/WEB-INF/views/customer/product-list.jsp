@@ -5,6 +5,7 @@
   Time: 15:34
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
@@ -267,29 +268,29 @@
                         <h3 class="sidebar-title">Categories</h3>
                         <ul class="sidebar-menu--shop">
                             <li><a type="button" onclick="clickCategory('ALL')">Tất cả</a></li>
-                            <c:forEach var="item" items="${categories}" begin="0" end="7">
+                            <c:forEach var="item" items="${categories}">
                                 <li><a type="button" onclick="clickCategory('${item.code}')">${item.value}</a></li>
                             </c:forEach>
                         </ul>
                     </div>
                     <!-- Price -->
-                    <div class="single-block">
-                        <h3 class="sidebar-title">Fillter By Price</h3>
-                        <div class="range-slider pt--30">
-                            <div class="sb-range-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"
-                                     style="left: 10.6242%; width: 45.2855%;"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"
-                                      style="left: 10.6242%;"></span><span tabindex="0"
-                                                                           class="ui-slider-handle ui-corner-all ui-state-default"
-                                                                           style="left: 55.9097%;"></span></div>
-                            <div class="slider-price">
-                                <p>
-                                    <input type="text" id="amount" readonly="">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+<%--                    <div class="single-block">--%>
+<%--                        <h3 class="sidebar-title">Fillter By Price</h3>--%>
+<%--                        <div class="range-slider pt--30">--%>
+<%--                            <div class="sb-range-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">--%>
+<%--                                <div class="ui-slider-range ui-corner-all ui-widget-header"--%>
+<%--                                     style="left: 10.6242%; width: 45.2855%;"></div>--%>
+<%--                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"--%>
+<%--                                      style="left: 10.6242%;"></span><span tabindex="0"--%>
+<%--                                                                           class="ui-slider-handle ui-corner-all ui-state-default"--%>
+<%--                                                                           style="left: 55.9097%;"></span></div>--%>
+<%--                            <div class="slider-price">--%>
+<%--                                <p>--%>
+<%--                                    <input type="text" id="amount" readonly="">--%>
+<%--                                </p>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                     <!-- Promotion Block -->
                     <div class="single-block">
                         <a href="" class="promo-image sidebar">
@@ -420,7 +421,7 @@
                         '<div class="product-card">' +
                         '<div class="product-grid-content">' +
                         '<div class="product-header">' +
-                        '<a href="" class="author">Epple </a>' +
+                        '<a href="" class="author">' + item.author + '</a>' +
                         '<h3><a href="product-details.html">'+item.name+'</a></h3></div>'+
                         '<div class="product-card--body">' +
                         '<div class="card-image">' +
@@ -502,7 +503,7 @@
 
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn chưa đăng nhập để thêm giỏ hàng !",
+            text: '${Message.ERROR_AUTHORIZATION}',
             icon: 'error',
             showCancelButton: true,
             cancelButtonText: 'Để sau!',
@@ -524,7 +525,7 @@
             success: function (response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Đã thêm vào giỏ hàng',
+                    title: '${Message.MESSAGE_PRODUCT_ADDED}',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -533,7 +534,7 @@
             error: function (response) {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Giỏ hàng của bạn đã có sản phẩm này',
+                    title: '${Message.MESSAGE_PRODUCT_EXISTED}',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -549,7 +550,7 @@
     function deleteCart(id) {
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn có muốn xoá sản phẩm này không ?",
+            text: '${Message.MESSAGE_CART_DELETE_CONFIRM}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#61ab02',
@@ -565,7 +566,7 @@
                     success: function (result) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Xoá thành công sản phẩm khỏi giỏ hàng',
+                            title: '${Message.MESSAGE_CART_DELETE_SUCCEED}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -574,7 +575,7 @@
                     error: function (error) {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Xoá bị lỗi! Vui lòng kiểm tra lại',
+                            title: '${Message.ERROR_CART_DELETE_FAILED}',
                             showConfirmButton: false,
                             timer: 1500
                         })

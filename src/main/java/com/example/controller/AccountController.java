@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -14,9 +15,13 @@ public class AccountController {
 	private IOrderService orderService;
 
     @RequestMapping(value = "/customer/login", method = RequestMethod.GET)
-    public ModelAndView login() {
+    public ModelAndView login(@RequestParam(required = false, defaultValue = "false", value = "incorrectAccount") String incorrectAccount) {
         ModelAndView mav = new ModelAndView("customer/login");
         mav.addObject("disable", "on"); //disable quickview + supporthelp
+		if(incorrectAccount.equals("false") ){
+			mav.addObject("incorrectAccount", "false");
+		}
+		else mav.addObject("incorrectAccount", "true");
         return mav;
     }
     
@@ -24,7 +29,7 @@ public class AccountController {
 	public ModelAndView register() {
 		ModelAndView mav = new ModelAndView("customer/register");
 		mav.addObject("disable", "on"); //disable quickview + supporthelp
-		
+//		mav.addObject("incorrect", "false");
 		return mav;
 	}
 	
@@ -41,7 +46,7 @@ public class AccountController {
 //	public ModelAndView loginIncorrect() {
 //		ModelAndView mav = new ModelAndView("customer/login");
 //		mav.addObject("disable", "on"); //disable quickview + supporthelp
-//		mav.addObject("incorrect", "aaaaaaaaaaaaa");
+//		mav.addObject("loginFail", "hello");
 //
 //		return mav;
 //	}

@@ -5,6 +5,7 @@
   Time: 22:06
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
@@ -70,9 +71,7 @@
                     </div>
                     <article class="product-details-article">
                         <h4 class="sr-only">Product Summery</h4>
-                        <p>Long printed dress with thin adjustable straps. V-neckline and wiring under the Dust
-                            with ruffles at the bottom of the
-                            dress.</p>
+                        <p>${productDetail.description}</p>
                     </article>
                     <div class="add-to-cart-row">
                         <div class="count-input-block">
@@ -81,103 +80,6 @@
                         </div>
                         <div class="add-cart-btn">
                             <a onclick="addToCart(${productDetail.id})" type="button" class="btn btn-outlined--primary"><span class="plus-icon">+</span>Thêm giỏ hàng</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="sb-custom-tab review-tab section-padding">
-            <ul class="nav nav-tabs nav-style-2" id="myTab2" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="tab1" data-toggle="tab" href="#tab-1" role="tab"
-                       aria-controls="tab-1" aria-selected="true">
-                        MÔ TẢ
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab2" data-toggle="tab" href="#tab-2" role="tab"
-                       aria-controls="tab-2" aria-selected="true">
-                        REVIEWS (1)
-                    </a>
-                </li>
-            </ul>
-            <div class="tab-content space-db--20" id="myTabContent">
-                <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab1">
-                    <article class="review-article">
-                        <h1 class="sr-only">Tab Article</h1>
-                        <p>${productDetail.description}</p>
-                    </article>
-                </div>
-                <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab2">
-                    <div class="review-wrapper">
-                        <h2 class="title-lg mb--20">1 REVIEW FOR AUCTOR GRAVIDA ENIM</h2>
-                        <div class="review-comment mb--20">
-                            <div class="avatar">
-                                <img src="image/icon/author-logo.png" alt="">
-                            </div>
-                            <div class="text">
-                                <div class="rating-block mb--15">
-                                    <span class="ion-android-star-outline star_on"></span>
-                                    <span class="ion-android-star-outline star_on"></span>
-                                    <span class="ion-android-star-outline star_on"></span>
-                                    <span class="ion-android-star-outline"></span>
-                                    <span class="ion-android-star-outline"></span>
-                                </div>
-                                <h6 class="author">ADMIN – <span class="font-weight-400">March 23, 2015</span>
-                                </h6>
-                                <p>Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio
-                                    quis mi.</p>
-                            </div>
-                        </div>
-                        <h2 class="title-lg mb--20 pt--15">ADD A REVIEW</h2>
-                        <div class="rating-row pt-2">
-                            <p class="d-block">Your Rating</p>
-                            <span class="rating-widget-block">
-                                        <input type="radio" name="star" id="star1">
-                                        <label for="star1"></label>
-                                        <input type="radio" name="star" id="star2">
-                                        <label for="star2"></label>
-                                        <input type="radio" name="star" id="star3">
-                                        <label for="star3"></label>
-                                        <input type="radio" name="star" id="star4">
-                                        <label for="star4"></label>
-                                        <input type="radio" name="star" id="star5">
-                                        <label for="star5"></label>
-                                    </span>
-                            <form action="./" class="mt--15 site-form ">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="message">Comment</label>
-                                            <textarea name="message" id="message" cols="30" rows="10"
-                                                      class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label for="name">Name *</label>
-                                            <input type="text" id="name" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label for="email">Email *</label>
-                                            <input type="text" id="email" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label for="website">Website</label>
-                                            <input type="text" id="website" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="submit-btn">
-                                            <a href="#" class="btn btn-black">Post Comment</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -198,7 +100,7 @@ RELATED PRODUCTS BOOKS
     function deleteCart(id) {
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn có muốn xoá sản phẩm này không ?",
+            text: '${Message.MESSAGE_CART_DELETE_CONFIRM}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#61ab02',
@@ -214,7 +116,7 @@ RELATED PRODUCTS BOOKS
                     success: function (result) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Xoá thành công sản phẩm khỏi giỏ hàng',
+                            title: '${Message.MESSAGE_CART_DELETE_SUCCEED}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -223,7 +125,7 @@ RELATED PRODUCTS BOOKS
                     error: function (error) {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Xoá bị lỗi! Vui lòng kiểm tra lại',
+                            title: '${Message.ERROR_CART_DELETE_FAILED}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -334,7 +236,7 @@ RELATED PRODUCTS BOOKS
 
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn chưa đăng nhập để thêm giỏ hàng !",
+            text: '${Message.ERROR_AUTHORIZATION}',
             icon: 'error',
             showCancelButton: true,
             cancelButtonText: 'Để sau!',
@@ -352,7 +254,14 @@ RELATED PRODUCTS BOOKS
         if(quantityProduct == 0){
             Swal.fire({
                 icon: 'error',
-                title: 'Sản phẩm đã hết vui lòng thử lại sau !',
+                title: '${Message.ERROR_PRODUCT_NOT_ENOUGH}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        } else if ($('#quantityChoose').val() > quantityProduct) {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_NOT_ADAPT}',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -366,7 +275,7 @@ RELATED PRODUCTS BOOKS
                 success: function (response) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Đã thêm vào giỏ hàng',
+                        title: '${Message.MESSAGE_PRODUCT_ADDED}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -376,7 +285,7 @@ RELATED PRODUCTS BOOKS
 
                     Swal.fire({
                         icon: 'error',
-                        title: 'Giỏ hàng của bạn đã có sản phẩm này',
+                        title: '${Message.MESSAGE_PRODUCT_EXISTED}',
                         showConfirmButton: false,
                         timer: 1500
                     })
