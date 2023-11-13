@@ -6,6 +6,7 @@
   Time: 00:50
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -36,8 +37,8 @@
                             <a href="#dashboad" class="active" data-toggle="tab"><i class="fas fa-tachometer-alt"></i>
                                 Dashboard</a>
                             <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Đơn hàng</a>
-                            <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i>
-                                Địa chỉ</a>
+<%--                            <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i>--%>
+<%--                                Địa chỉ</a>--%>
                             <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Thông tin tài khoản</a>
                             <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
@@ -50,11 +51,11 @@
                             <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
                                 <div class="myaccount-content">
                                     <h3>Dashboard</h3>
-                                    <div class="welcome mb-20">
-                                        <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni
-                                            !</strong><a href="/customer/logout" class="logout">
-                                            Logout</a>)</p>
-                                    </div>
+<%--                                    <div class="welcome mb-20">--%>
+<%--                                        <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni--%>
+<%--                                            !</strong><a href="/customer/logout" class="logout">--%>
+<%--                                            Logout</a>)</p>--%>
+<%--                                    </div>--%>
                                     <p class="mb-0">From your account dashboard. you can easily check &amp; view
                                         your
                                         recent orders, manage your shipping and billing addresses and edit your
@@ -96,19 +97,19 @@
                             </div>
                             <!-- Single Tab Content End -->
                             <!-- Single Tab Content Start -->
-                            <div class="tab-pane fade" id="address-edit" role="tabpanel">
-                                <div class="myaccount-content">
-                                    <h3>Billing Address</h3>
-                                    <address>
-                                        <p><strong>Alex Tuntuni</strong></p>
-                                        <p>1355 Market St, Suite 900 <br>
-                                            San Francisco, CA 94103</p>
-                                        <p>Mobile: (123) 456-7890</p>
-                                    </address>
-                                    <a href="#" class="btn btn--primary"><i class="fa fa-edit"></i>Edit
-                                        Address</a>
-                                </div>
-                            </div>
+<%--                            <div class="tab-pane fade" id="address-edit" role="tabpanel">--%>
+<%--                                <div class="myaccount-content">--%>
+<%--                                    <h3>Billing Address</h3>--%>
+<%--                                    <address>--%>
+<%--                                        <p><strong>Alex Tuntuni</strong></p>--%>
+<%--                                        <p>1355 Market St, Suite 900 <br>--%>
+<%--                                            San Francisco, CA 94103</p>--%>
+<%--                                        <p>Mobile: (123) 456-7890</p>--%>
+<%--                                    </address>--%>
+<%--                                    <a href="#" class="btn btn--primary"><i class="fa fa-edit"></i>Edit--%>
+<%--                                        Address</a>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <!-- Single Tab Content End -->
                             <!-- Single Tab Content Start -->
                             <div class="tab-pane fade" id="account-info" role="tabpanel">
@@ -118,25 +119,25 @@
                                         <form action="#">
                                             <div class="row">
                                                 <div class="col-12  mb--30">
-                                                    <input id="display-name" placeholder="Họ tên" type="text">
+                                                    <input id="display-name" name="name" placeholder="Họ tên" type="text">
                                                 </div>
                                                 <div class="col-12  mb--30">
-                                                    <input id="phone" placeholder="Số điện thoại" type="text">
+                                                    <input id="phone" name="phone" placeholder="Số điện thoại" type="text">
                                                 </div>
                                                 <div class="col-12  mb--30">
                                                     <h4>Thay đổi mật khẩu</h4>
                                                 </div>
                                                 <div class="col-12  mb--30">
-                                                    <input id="current-pwd" placeholder="Current Password" type="password">
+                                                    <input id="current-pwd" name="currentPass" placeholder="Current Password" type="password">
                                                 </div>
                                                 <div class="col-lg-6 col-12  mb--30">
-                                                    <input id="new-pwd" placeholder="New Password" type="password">
+                                                    <input id="new-pwd" name="newPass" placeholder="New Password" type="password">
                                                 </div>
                                                 <div class="col-lg-6 col-12  mb--30">
-                                                    <input id="confirm-pwd" placeholder="Confirm Password" type="password">
+                                                    <input id="confirm-pwd" name="confirmPass" placeholder="Confirm Password" type="password">
                                                 </div>
                                                 <div class="col-12">
-                                                    <button class="btn btn--primary">Save Changes</button>
+                                                    <button class="btn btn--primary" onclick="updateUserInfo()">Save Changes</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -243,6 +244,59 @@
                 console.log(response.errors);
             }
         });
+    }
+
+    function updateUserInfo() {
+        var data = {}
+        $.each($('#account-info').find("input"), function (i, v) {
+            data["" + v.name + ""] = v.value
+        });
+
+        if (data["name"].trim() === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_ACCOUNT_EMPTY_NAME}',
+                showConfirmButton: true,
+                timer: 1500
+            })
+            return;
+        }
+        if (data["phone"] === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_ACCOUNT_EMPTY_PHONE}',
+                showConfirmButton: true,
+                timer: 1500
+            })
+            return;
+        }
+        if (data["currentPass"].trim() === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_ACCOUNT_EMPTY_CURRENT_PASS}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (data["newPass"].trim() === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_ACCOUNT_EMPTY_NEW_PASS}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (data["confirmPass"].trim() === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_ACCOUNT_EMPTY_CONFIRM_PASS}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
     }
 </script>
 </body>

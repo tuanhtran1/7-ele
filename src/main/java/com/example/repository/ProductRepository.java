@@ -18,7 +18,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long>, P
 
     List<ProductEntity> findByCategory_Code(String code);
 
-    List<ProductEntity> findByDiscountGreaterThan(Float value);
+    List<ProductEntity> findByDiscountGreaterThan(Float value); //supported by jpa repository
     
     @Query("select p FROM ProductEntity p where 1 = 1"
 		+" and ((:#{#filters.keyword} is null) or (lower(unaccent(p.name)) like concat('%',lower(unaccent(:#{#filters.keyword})),'%')))"

@@ -6,6 +6,7 @@
   Time: 00:47
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
@@ -33,23 +34,23 @@
                 <!-- Checkout Form s-->
                 <div class="checkout-form">
                     <div class="row row-40">
-                        <div class="col-12">
-                            <h1 class="quick-title">Checkout</h1>
-                            <!-- Slide Down Trigger  -->
-                            <div class="checkout-quick-box">
-                                <p><i class="far fa-sticky-note"></i>Have a coupon? <a href="javascript:" class="slide-trigger" data-target="#quick-cupon">
-                                    Click here to enter your code</a></p>
-                            </div>
-                            <!-- Slide Down Blox ==> Cupon Box -->
-                            <div class="checkout-slidedown-box" id="quick-cupon" style="display: block;">
-                                <form action="./">
-                                    <div class="checkout_coupon">
-                                        <input type="text" class="mb-0" placeholder="Coupon Code">
-                                        <a href="" class="btn btn-outlined">Apply coupon</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+<%--                        <div class="col-12">--%>
+<%--                            <h1 class="quick-title">Checkout</h1>--%>
+<%--                            <!-- Slide Down Trigger  -->--%>
+<%--                            <div class="checkout-quick-box">--%>
+<%--                                <p><i class="far fa-sticky-note"></i>Have a coupon? <a href="javascript:" class="slide-trigger" data-target="#quick-cupon">--%>
+<%--                                    Click here to enter your code</a></p>--%>
+<%--                            </div>--%>
+<%--                            <!-- Slide Down Blox ==> Cupon Box -->--%>
+<%--                            <div class="checkout-slidedown-box" id="quick-cupon" style="display: block;">--%>
+<%--                                <form action="./">--%>
+<%--                                    <div class="checkout_coupon">--%>
+<%--                                        <input type="text" class="mb-0" placeholder="Coupon Code">--%>
+<%--                                        <a href="" class="btn btn-outlined">Apply coupon</a>--%>
+<%--                                    </div>--%>
+<%--                                </form>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                         <div class="col-lg-7 mb--20">
                             <!-- Billing Address -->
                             <div id="billing-form" class="mb-40">
@@ -71,69 +72,69 @@
                                         <label>Địa chỉ</label>
                                         <input id="createAddress" type="text" placeholder="Nhập địa chỉ" value="">
                                     </div>
-                                    <div class="col-12 mb--20 ">
-                                        <div class="block-border check-bx-wrapper">
-                                            <div class="check-box">
-                                                <input type="checkbox" id="shiping_address" data-shipping="">
-                                                <label for="shiping_address">Ship to Different Address</label>
-                                            </div>
-                                        </div>
-                                    </div>
+<%--                                    <div class="col-12 mb--20 ">--%>
+<%--                                        <div class="block-border check-bx-wrapper">--%>
+<%--                                            <div class="check-box">--%>
+<%--                                                <input type="checkbox" id="shiping_address" data-shipping="">--%>
+<%--                                                <label for="shiping_address">Ship to Different Address</label>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
                                 </div>
                             </div>
-                            <!-- Shipping Address -->
-                            <div id="shipping-form" class="mb--40">
-                                <h4 class="checkout-title">Shipping Address</h4>
-                                <div class="row">
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>First Name*</label>
-                                        <input type="text" placeholder="First Name">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>Last Name*</label>
-                                        <input type="text" placeholder="Last Name">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>Email Address*</label>
-                                        <input type="email" placeholder="Email Address">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>Phone no*</label>
-                                        <input type="text" placeholder="Phone number">
-                                    </div>
-                                    <div class="col-12 mb--20">
-                                        <label>Company Name</label>
-                                        <input type="text" placeholder="Company Name">
-                                    </div>
-                                    <div class="col-12 mb--20">
-                                        <label>Address*</label>
-                                        <input type="text" placeholder="Address line 1">
-                                        <input type="text" placeholder="Address line 2">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>Country*</label>
-                                        <select class="nice-select" style="display: none;">
-                                            <option>Bangladesh</option>
-                                            <option>China</option>
-                                            <option>country</option>
-                                            <option>India</option>
-                                            <option>Japan</option>
-                                        </select><div class="nice-select" tabindex="0"><span class="current">Bangladesh</span><ul class="list"><li data-value="Bangladesh" class="option selected">Bangladesh</li><li data-value="China" class="option">China</li><li data-value="country" class="option">country</li><li data-value="India" class="option">India</li><li data-value="Japan" class="option">Japan</li></ul></div>
-                                    </div>
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>Town/City*</label>
-                                        <input type="text" placeholder="Town/City">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>State*</label>
-                                        <input type="text" placeholder="State">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb--20">
-                                        <label>Zip Code*</label>
-                                        <input type="text" placeholder="Zip Code">
-                                    </div>
-                                </div>
-                            </div>
+<%--                            <!-- Shipping Address -->--%>
+<%--                            <div id="shipping-form" class="mb--40">--%>
+<%--                                <h4 class="checkout-title">Shipping Address</h4>--%>
+<%--                                <div class="row">--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>First Name*</label>--%>
+<%--                                        <input type="text" placeholder="First Name">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>Last Name*</label>--%>
+<%--                                        <input type="text" placeholder="Last Name">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>Email Address*</label>--%>
+<%--                                        <input type="email" placeholder="Email Address">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>Phone no*</label>--%>
+<%--                                        <input type="text" placeholder="Phone number">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-12 mb--20">--%>
+<%--                                        <label>Company Name</label>--%>
+<%--                                        <input type="text" placeholder="Company Name">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-12 mb--20">--%>
+<%--                                        <label>Address*</label>--%>
+<%--                                        <input type="text" placeholder="Address line 1">--%>
+<%--                                        <input type="text" placeholder="Address line 2">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>Country*</label>--%>
+<%--                                        <select class="nice-select" style="display: none;">--%>
+<%--                                            <option>Bangladesh</option>--%>
+<%--                                            <option>China</option>--%>
+<%--                                            <option>country</option>--%>
+<%--                                            <option>India</option>--%>
+<%--                                            <option>Japan</option>--%>
+<%--                                        </select><div class="nice-select" tabindex="0"><span class="current">Bangladesh</span><ul class="list"><li data-value="Bangladesh" class="option selected">Bangladesh</li><li data-value="China" class="option">China</li><li data-value="country" class="option">country</li><li data-value="India" class="option">India</li><li data-value="Japan" class="option">Japan</li></ul></div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>Town/City*</label>--%>
+<%--                                        <input type="text" placeholder="Town/City">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>State*</label>--%>
+<%--                                        <input type="text" placeholder="State">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-md-6 col-12 mb--20">--%>
+<%--                                        <label>Zip Code*</label>--%>
+<%--                                        <input type="text" placeholder="Zip Code">--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <div class="order-note-block mt--30">
                                 <label for="order-note">Order notes</label>
                                 <textarea id="order-note" cols="30" rows="10" class="order-note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
@@ -153,13 +154,6 @@
                                         <p id="feeShip"> Phí ship <span>$00.00</span></p>
 
                                         <h4 id ="grandTotal">Tổng cộng<form id="payment"><span><input name="total" value="100"></span></form></h4>
-                                        <div class="method-notice mt--25">
-                                            <article>
-                                                <h3 class="d-none sr-only">blog-article</h3>
-                                                Xin lỗi, có vẻ như không có phương thức thanh toán nào cho
-                                                tiểu bang của bạn. Vui lòng liên hệ với chúng tôi nếu bạn cần hỗ trợ hoặc muốn thu xếp thay thế
-                                            </article>
-                                        </div>
                                         <div class="term-block">
                                             <input type="checkbox" id="accept_terms2">
                                             <label for="accept_terms2">Tôi đã đọc và chấp nhận các điều khoản & điều kiện</label>
@@ -216,7 +210,7 @@
         if(address == null || address == ''){
             Swal.fire({
                 icon: 'error',
-                title: 'Bạn chưa nhập địa chỉ',
+                title: '${Message.ERROR_CHECKOUT_EMPTY_ADDRESS}',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -233,7 +227,7 @@
         if(address == null || address == ''){
             Swal.fire({
                 icon: 'error',
-                title: 'Bạn chưa nhập địa chỉ',
+                title: '${Message.ERROR_CHECKOUT_EMPTY_ADDRESS}',
                 showConfirmButton: false,
                 timer: 1500
             })

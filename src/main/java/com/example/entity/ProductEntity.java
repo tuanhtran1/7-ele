@@ -56,4 +56,10 @@ public class ProductEntity extends BaseEntity {
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
 	private List<ReceivedNoteDetailEntity> receivedNoteDetail;
+	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	private List<PromotionDetailEntity> promotionDetails;
+	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	private List<RatingEntity> ratings;
 }

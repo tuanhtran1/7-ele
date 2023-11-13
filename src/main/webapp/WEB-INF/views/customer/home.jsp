@@ -7,6 +7,7 @@
   Time: 11:02 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -29,16 +30,9 @@ Home Slider Tab
                     <span class="arrow-icon"></span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="men-tab" data-toggle="tab" href="#men" role="tab"
-                       aria-controls="men" aria-selected="true">
-                        Ưu đãi
-                    </a>
-                    <span class="arrow-icon"></span>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" id="woman-tab" data-toggle="tab" href="#woman" role="tab"
                        aria-controls="woman" aria-selected="false">
-                        Hot
+                        Sale
                     </a>
                     <span class="arrow-icon"></span>
                 </li>
@@ -870,7 +864,7 @@ Promotion Section Two
                             <div class="add-to-cart-row">
                                 <div class="count-input-block">
                                     <span class="widget-label">Số lượng</span>
-                                    <input type="number" class="form-control text-center" value="1">
+                                    <input type="number" class="form-control text-center" value="1" min="0">
                                 </div>
                                 <div id="btnChoose" class="add-cart-btn">
                                     <a type="button" class="btn btn-outlined--primary"><span
@@ -905,7 +899,7 @@ Promotion Section Two
     function deleteCart(id) {
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn có muốn xoá sản phẩm này không ?",
+            text: '${Message.MESSAGE_CART_DELETE_CONFIRM}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#61ab02',
@@ -921,7 +915,7 @@ Promotion Section Two
                     success: function (result) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Xoá thành công sản phẩm khỏi giỏ hàng',
+                            title: '${Message.MESSAGE_CART_DELETE_SUCCEED}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -930,7 +924,7 @@ Promotion Section Two
                     error: function (error) {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Xoá bị lỗi! Vui lòng kiểm tra lại',
+                            title: '${Message.ERROR_CART_DELETE_FAILED}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -1019,7 +1013,7 @@ Promotion Section Two
         <security:authorize access="isAuthenticated() == false">
         Swal.fire({
             title: 'Thông báo',
-            text: "Bạn chưa đăng nhập để thêm giỏ hàng !",
+            text: '${Message.ERROR_AUTHORIZATION}',
             icon: 'error',
             showCancelButton: true,
             cancelButtonText: 'Để sau!',
@@ -1041,7 +1035,7 @@ Promotion Section Two
             success: function (response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Đã thêm vào giỏ hàng',
+                    title: '${Message.MESSAGE_PRODUCT_ADDED}',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -1050,7 +1044,7 @@ Promotion Section Two
             error: function (response) {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Giỏ hàng của bạn đã có sản phẩm này',
+                    title: '${Message.MESSAGE_PRODUCT_EXISTED}',
                     showConfirmButton: false,
                     timer: 1500
                 })

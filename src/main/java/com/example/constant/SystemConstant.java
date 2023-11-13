@@ -2,7 +2,7 @@ package com.example.constant;
 
 public class SystemConstant {
     public static final String BASE_API = "http://localhost:8080";
-    public static final String UPLOAD_IMG_DIR_PRODUCT = "/Users/tuanhtran1/Documents/java/demo/7-ele/src/main/webapp/image/product/";
+    public static final String UPLOAD_IMG_DIR_PRODUCT = "E:/7-ele/src/main/webapp/image/product/";
 
     public static final String ADMIN = "ROLE_ADMIN";
     public static final String MANAGER = "ROLE_MANAGER";
@@ -22,4 +22,5 @@ public class SystemConstant {
 
     public static final String EMAIL_REGEX = "^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,10}$";
 
+    public static final String ERROR_WRONG_EMAIL_FORMAT = "Email không đúng định dạng";
 }

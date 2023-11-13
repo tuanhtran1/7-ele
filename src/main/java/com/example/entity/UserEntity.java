@@ -39,4 +39,7 @@ public class UserEntity extends BaseEntity {
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<ReceivedNoteEntity> receivedNote;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<RatingEntity> ratings;
 }

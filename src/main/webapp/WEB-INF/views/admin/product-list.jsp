@@ -5,6 +5,7 @@
   Time: 9:13 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.example.constant.Message" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
@@ -250,7 +251,7 @@
                     <label
                             class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Price:</label>
                     <div class="col-lg-9 col-xl-8">
-                        <input id="price" name="price" class="form-control" type="text"/>
+                        <input id="price" name="price" class="form-control" type="number" min="0"/>
                     </div>
                 </div>
 
@@ -258,7 +259,7 @@
                     <label
                             class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Discount(%):</label>
                     <div class="col-lg-9 col-xl-8">
-                        <input id="discount" name="discount" class="form-control" type="text"/>
+                        <input id="discount" name="discount" class="form-control" type="number" min="0"/>
                     </div>
                 </div>
 
@@ -317,6 +318,70 @@
         });
         formData.append('productRequest', JSON.stringify(productRequest))
 
+        if (productRequest.name === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_NAME_EMPTY}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (productRequest.category === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_CATEGORY_EMPTY}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (productRequest.author === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_AUTHOR_EMPTY}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (productRequest.price === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_PRICE_EMPTY}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (productRequest.discount === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_DISCOUNT_EMPTY}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (productRequest.description === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_DESCRIPTION_EMPTY}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+        if (productRequest.image === "") {
+            Swal.fire({
+                icon: 'error',
+                title: '${Message.ERROR_PRODUCT_IMAGE_EMPTY}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+
         $.ajax({
             url: '/api/product',
             type: 'POST',
@@ -327,7 +392,7 @@
             success: function (result) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Thêm thành công',
+                    title: '${Message.MESSAGE_PRODUCT_CREATED_SUCCEED}',
                     showConfirmButton: false,
                     timer: 2000,
                 })
@@ -336,7 +401,7 @@
             error: function (error) {
                 Swal.fire({
                     icon: 'danger',
-                    title: 'Thêm thất bại',
+                    title: '${Message.ERROR_PRODUCT_CREATED_FAILED}',
                     showConfirmButton: false,
                     timer: 2000,
                 })
@@ -387,7 +452,7 @@
             success: function () {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Cập nhật thành công',
+                    title: '${Message.MESSAGE_PRODUCT_UPDATED_SUCCEED}',
                     showConfirmButton: false,
                     timer: 2000,
                 })
@@ -397,7 +462,7 @@
             error: function () {
                 Swal.fire({
                     icon: 'danger',
-                    title: 'Đã xảy ra lỗi vui lòng thử lại',
+                    title: '${Message.ERROR_PRODUCT_UPDATED_FAILED}',
                     showConfirmButton: false,
                     timer: 2000,
                 })
@@ -426,7 +491,7 @@
                     success: function (result) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Xoá sản phẩm thành công',
+                            title: '${Message.MESSAGE_PRODUCT_DELETED_SUCCEED}',
                             showConfirmButton: false,
                             timer: 2000,
                         })
@@ -436,7 +501,7 @@
                     error: function (error) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Xoá sản phẩm thành công',
+                            title: '${Message.ERROR_PRODUCT_DELETED_FAILED}',
                             showConfirmButton: false,
                             timer: 2000,
                         })
