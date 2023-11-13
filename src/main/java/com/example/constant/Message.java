@@ -42,5 +42,19 @@ public class Message {
     public static final String ERROR_ACCOUNT_EMPTY_NEW_PASS= "Vui lòng nhập mật khẩu mới";
     public static final String ERROR_ACCOUNT_EMPTY_CONFIRM_PASS = "Vui lòng nhập mật khẩu xác nhận";
 
-    //
+    // ADMIN PRODUCT
+    public static final String MESSAGE_PRODUCT_CREATED_SUCCEED = "Thêm sản phẩm thành công";
+    public static final String MESSAGE_PRODUCT_UPDATED_SUCCEED = "Cập nhật sản phẩm thành công";
+    public static final String MESSAGE_PRODUCT_DELETED_SUCCEED = "Xóa sản phẩm thành công";
+    public static final String ERROR_PRODUCT_CREATED_FAILED = "Thêm sản phẩm thất bại";
+    public static final String ERROR_PRODUCT_UPDATED_FAILED = "Cập nhật sản phẩm thất bại";
+    public static final String ERROR_PRODUCT_DELETED_FAILED = "Xóa sản phẩm thất bại";
+
+    public static final String ERROR_PRODUCT_NAME_EMPTY = "Vui lòng nhập tên sản phẩm";
+    public static final String ERROR_PRODUCT_CATEGORY_EMPTY = "Vui lòng chọn thể loại";
+    public static final String ERROR_PRODUCT_AUTHOR_EMPTY = "Vui lòng nhập tên tác giả";
+    public static final String ERROR_PRODUCT_PRICE_EMPTY = "Vui lòng nhập giá sản phẩm";
+    public static final String ERROR_PRODUCT_DISCOUNT_EMPTY = "Vui lòng nhập mức giảm sản phẩm";
+    public static final String ERROR_PRODUCT_DESCRIPTION_EMPTY = "Vui lòng nhập mô tả sản phẩm";
+    public static final String ERROR_PRODUCT_IMAGE_EMPTY = "Vui lòng nhập hình ảnh sản phẩm";
 }

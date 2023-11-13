@@ -76,7 +76,7 @@
                     <div class="add-to-cart-row">
                         <div class="count-input-block">
                             <span class="widget-label">Số lượng</span>
-                            <input id="quantityChoose" type="number" class="form-control text-center" value="1">
+                            <input id="quantityChoose" type="number" class="form-control text-center" value="1" min="1">
                         </div>
                         <div class="add-cart-btn">
                             <a onclick="addToCart(${productDetail.id})" type="button" class="btn btn-outlined--primary"><span class="plus-icon">+</span>Thêm giỏ hàng</a>
